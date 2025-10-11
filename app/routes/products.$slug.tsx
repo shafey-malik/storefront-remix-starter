@@ -212,7 +212,7 @@ export default function ProductSlug() {
                       activeOrderFetcher.state !== 'idle'
                         ? 'bg-gray-400'
                         : qtyInCart === 0
-                        ? 'bg-primary-600 hover:bg-primary-700'
+                        ? 'bg-primary hover:bg-primary-700'
                         : 'bg-green-600 active:bg-green-700 hover:bg-green-700'
                     }
                                      transition-colors border border-transparent rounded-md py-3 px-8 flex items-center

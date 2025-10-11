@@ -58,7 +58,7 @@ export default function AccountDashboard() {
       <Form method="post" action="/api/logout">
         <button
           type="submit"
-          className="underline text-primary-600 hover:text-primary-800"
+          className="underline text-primary hover:text-primary-800"
         >
           {t('account.signOut')}
         </button>

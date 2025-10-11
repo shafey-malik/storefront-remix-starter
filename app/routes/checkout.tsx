@@ -39,7 +39,7 @@ export default function Checkout() {
             {steps.map((step, stepIdx) => (
               <li key={step} className="flex items-center">
                 {step === state ? (
-                  <span aria-current="page" className="text-primary-600">
+                  <span aria-current="page" className="text-primary">
                     {t(`checkout.steps.${step}`)}
                   </span>
                 ) : (

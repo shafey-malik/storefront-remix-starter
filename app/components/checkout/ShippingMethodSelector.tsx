@@ -63,7 +63,7 @@ export function ShippingMethodSelector({
                 </span>
                 {checked ? (
                   <CheckCircleIcon
-                    className="h-5 w-5 text-primary-600"
+                    className="h-5 w-5 text-primary"
                     aria-hidden="true"
                   />
                 ) : null}

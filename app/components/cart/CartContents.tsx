@@ -88,7 +88,7 @@ export function CartContents({
                       type="submit"
                       name="removeItem"
                       value={line.id}
-                      className="font-medium text-primary-600 hover:text-primary-500"
+                      className="font-medium text-primary hover:text-primary-500"
                       onClick={() => removeItem && removeItem(line.id)}
                     >
                       {t('common.remove')}

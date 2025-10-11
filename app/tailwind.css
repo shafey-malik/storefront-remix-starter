@@ -1,28 +1,231 @@
 @tailwind base;
-/* @tailwind components; */
+@tailwind components;
 @tailwind utilities;
 
+/* Premium Diamond Brand Design System - Luxury Color Palette */
+
 @layer base {
-  button:disabled {
-    cursor: not-allowed;
+  :root {
+    /* Core Brand Colors - Luxury Diamond Theme */
+    --background: 0 0% 99%;
+    --foreground: 240 9% 15%;
+
+    /* Premium Card & Surface Colors */
+    --card: 0 0% 100%;
+    --card-foreground: 240 9% 15%;
+    --surface-luxury: 45 25% 96%;
+    --surface-champagne: 40 15% 94%;
+
+    /* Brand Primary - Elegant Dark Navy */
+    --primary: 240 25% 15%;
+    --primary-foreground: 0 0% 98%;
+    --primary-light: 240 15% 25%;
+
+    /* Secondary - Champagne Gold */
+    --secondary: 45 43% 64.5%;
+    --secondary-foreground: 240 25% 15%;
+    --secondary-rich: 40 45% 75%;
+
+    /* Accent - Rose Gold */
+    --accent: 15 25% 88%;
+    --accent-foreground: 240 25% 15%;
+    --accent-warm: 20 35% 82%;
+
+    /* Luxury Metallics */
+    --platinum: 220 8% 88%;
+    --platinum-dark: 220 10% 75%;
+    --gold: 40 60% 80%;
+    --rose-gold: 15 40% 85%;
+
+    /* Neutral Grays - Sophisticated */
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 4% 45%;
+    --border: 240 6% 90%;
+    --input: 240 6% 95%;
+    --ring: 240 25% 15%;
+
+    /* Luxury Gradients */
+    --gradient-luxury: linear-gradient(135deg, hsl(40, 25%, 95%), hsl(0, 0%, 100%));
+    --gradient-champagne: linear-gradient(135deg, hsl(45, 35%, 90%), hsl(40, 25%, 95%));
+    --gradient-platinum: linear-gradient(135deg, hsl(220, 8%, 92%), hsl(220, 5%, 96%));
+    --gradient-hero: linear-gradient(135deg, hsl(0, 0%, 98%), hsl(45, 15%, 96%));
+
+    /* Premium Shadows */
+    --shadow-luxury: 0 4px 20px -2px hsl(240 25% 15% / 0.08);
+    --shadow-elegant: 0 8px 32px -4px hsl(240 25% 15% / 0.12);
+    --shadow-premium: 0 20px 60px -12px hsl(240 25% 15% / 0.15);
+    --shadow-card: 0 2px 12px -3px hsl(240 25% 15% / 0.06);
+
+    /* Smooth Transitions */
+    --transition-elegant: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+
+    --second: hsl(245 100% 15.6%);
+    /* Blue example - change HSL values */
+    --second-rich: 210 90% 45%;
+    /* Darker blue */
+    --second-foreground: 0 0% 98%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 
-@layer utilities {
-  .flex-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .shadow-divider {
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 10px 9px -10px inset;
+@layer base {
+  * {
+    @apply border-border;
   }
 
-  .mirror-x {
-    --tw-scale-x: -1;
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+}
+
+@layer components {
+
+  /* Luxury Typography Classes */
+  .font-luxury-serif {
+    font-family: 'Playfair Display', serif;
   }
 
-  .text-inherit {
-    color: inherit;
+  .font-luxury-sans {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   }
+
+  @layer components {
+
+    /* Define custom easing */
+    .transition-luxury {
+      transition-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+    }
+
+    .btn-luxury {
+      @apply relative overflow-hidden bg-gradient-to-r from-[hsl(var(--secondary))] to-[hsl(var(--secondary-rich))] text-[hsl(var(--secondary-foreground))] px-8 py-3 rounded-lg shadow-[0_4px_15px_hsl(var(--secondary)/0.4)] transition-all duration-500 transition-luxury hover:bg-gradient-to-r hover:from-[hsl(var(--second))] hover:to-[hsl(var(--second-rich))] hover:shadow-[0_6px_20px_hsl(var(--second)/0.6)] active:brightness-90;
+
+      /* Subtle shimmer effect */
+      &::after {
+        @apply content-[''] absolute top-0 left-[-100%] w-[50%] h-full bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-[-30deg] transition-all duration-700 ease-out;
+      }
+
+      &:hover::after {
+        @apply left-[150%];
+      }
+    }
+  }
+
+  /* Or if you specifically want the cubic-bezier timing */
+  @layer utilities {
+    .transition-elegant {
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  }
+
+  .btn-luxury-alt {
+    @apply bg-gradient-to-r from-[hsl(var(--secondary)/0.9)] to-[hsl(var(--secondary-rich)/0.9)] text-[hsl(var(--secondary-foreground))] px-8 py-3 rounded-lg shadow-[0_4px_15px_var(--tw-shadow-color)] shadow-[hsl(var(--secondary)/0.4)] transition-all duration-300 transition-elegant hover:shadow-[0_6px_20px_hsl(var(--secondary)/0.6)] hover:scale-105 hover:brightness-110 active:scale-100 active:brightness-90;
+  }
+
+  .btn-platinum {
+    @apply bg-gradient-to-r from-[hsl(var(--platinum))] to-[hsl(var(--platinum-dark))] text-[hsl(var(--primary))] px-8 py-3 rounded-lg shadow-[var(--shadow-card)] transition-[var(--transition-smooth)] hover:shadow-[var(--shadow-luxury)];
+  }
+
+  /* Premium Card Effects */
+  .card-luxury {
+    @apply bg-[hsl(var(--card))] rounded-2xl shadow-[var(--shadow-card)] transition-[var(--transition-elegant)] hover:shadow-[var(--shadow-elegant)] hover:-translate-y-1;
+  }
+
+  /* Navigation Hover Effects */
+  .nav-link {
+    @apply relative text-[hsl(var(--foreground))] transition-[var(--transition-smooth)] hover:text-[hsl(var(--primary))] after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[hsl(var(--primary))] after:transition-[var(--transition-smooth)] hover:after:w-full;
+  }
+
+  /* Luxury Backgrounds */
+  .bg-luxury-gradient {
+    background: var(--gradient-luxury);
+  }
+
+  .bg-champagne-gradient {
+    background: var(--gradient-champagne);
+  }
+
+  .bg-hero-gradient {
+    background: var(--gradient-hero);
+  }
+}
+
+/* Gold Luxury Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(0, 0%, 98%);
+  border-left: 1px solid hsl(45, 33%, 90%);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, hsl(45, 86%, 58%), hsl(45, 90%, 50%));
+  border-radius: 5px;
+  border: 2px solid hsl(0, 0%, 98%);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, hsl(45, 86%, 50%), hsl(45, 90%, 45%));
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(45, 59%, 68%) hsl(0, 0%, 98%);
 }
