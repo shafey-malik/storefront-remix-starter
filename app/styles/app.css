@@ -9,7 +9,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
 /* Premium Diamond Brand Design System - Luxury Color Palette */
 
 @layer base {
@@ -146,7 +146,7 @@
 
   /* Luxury Typography Classes */
   .font-luxury-serif {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Playfair Display';
   }
 
   .font-luxury-sans {

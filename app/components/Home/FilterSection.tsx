@@ -1,36 +1,37 @@
-import { useState } from "react";
-import { Search, SlidersHorizontal, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Slider } from "@/components/ui/slider";
+import { useState } from 'react';
+import { Search, SlidersHorizontal, X } from 'lucide-react';
+import { Card } from '../ui/card';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from '../ui/select';
+import { Slider } from '../ui/slider';
+import { Button } from '../ui/button';
+
 const FilterSection = () => {
   const [caratRange, setCaratRange] = useState([1, 3]);
   const [priceRange, setPriceRange] = useState([5000, 50000]);
   const [filters, setFilters] = useState({
-    cut: "",
-    style: "",
-    material: "",
-    size: "",
+    cut: '',
+    style: '',
+    material: '',
+    size: '',
   });
   const [showAdvanced, setShowAdvanced] = useState(false);
 
-  const handleFilterChange = (key, value) => {
+  const handleFilterChange = (key: any, value: any) => {
     setFilters((prev) => ({ ...prev, [key]: value }));
   };
 
   const resetFilters = () => {
     setFilters({
-      cut: "",
-      style: "",
-      material: "",
-      size: "",
+      cut: '',
+      style: '',
+      material: '',
+      size: '',
     });
     setCaratRange([1, 3]);
     setPriceRange([5000, 50000]);
@@ -58,7 +59,7 @@ const FilterSection = () => {
               </label>
               <Select
                 value={filters.cut}
-                onValueChange={(value) => handleFilterChange("cut", value)}
+                onValueChange={(value) => handleFilterChange('cut', value)}
               >
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="Select cut" />
@@ -83,7 +84,7 @@ const FilterSection = () => {
               </label>
               <Select
                 value={filters.style}
-                onValueChange={(value) => handleFilterChange("style", value)}
+                onValueChange={(value) => handleFilterChange('style', value)}
               >
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="Select style" />
@@ -106,7 +107,7 @@ const FilterSection = () => {
               </label>
               <Select
                 value={filters.material}
-                onValueChange={(value) => handleFilterChange("material", value)}
+                onValueChange={(value) => handleFilterChange('material', value)}
               >
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="Select material" />
@@ -128,7 +129,7 @@ const FilterSection = () => {
               </label>
               <Select
                 value={filters.size}
-                onValueChange={(value) => handleFilterChange("size", value)}
+                onValueChange={(value) => handleFilterChange('size', value)}
               >
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="Select size" />
@@ -291,7 +292,7 @@ const FilterSection = () => {
               onClick={() => setShowAdvanced(!showAdvanced)}
             >
               <SlidersHorizontal className="w-5 h-5 mr-2" />
-              {showAdvanced ? "Hide Advanced" : "Advanced Filters"}
+              {showAdvanced ? 'Hide Advanced' : 'Advanced Filters'}
             </Button>
             <Button
               variant="ghost"

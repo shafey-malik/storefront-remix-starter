@@ -88,7 +88,7 @@ export function Header({
                 className="flex items-center space-x-3 absolute left-1/2 transform -translate-x-1/2"
               >
                 <div className="hidden sm:block">
-                  <h1 className="font-serif text-2xl font-bold text-gray-900 leading-tight">
+                  <h1 className="font-luxury-serif text-3xl font-bold text-gray-900 leading-tight">
                     Ever & Always
                   </h1>
                 </div>

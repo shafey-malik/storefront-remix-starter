@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -145,32 +147,41 @@
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   }
 
-  @layer components {
+  /* Make Tailwind's default .font-serif use Playfair Display */
+  .font-serif {
+    font-family: 'Playfair Display', serif;
+  }
 
-    /* Define custom easing */
-    .transition-luxury {
-      transition-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+  /* Apply Playfair Display to headings globally */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Playfair Display', serif;
+  }
+
+  /* Define custom easing */
+  .transition-luxury {
+    transition-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+  }
+
+  .btn-luxury {
+    @apply relative overflow-hidden bg-gradient-to-r from-[hsl(var(--secondary))] to-[hsl(var(--secondary-rich))] text-[hsl(var(--secondary-foreground))] px-8 py-3 rounded-lg shadow-[0_4px_15px_hsl(var(--secondary)/0.4)] transition-all duration-500 transition-luxury hover:bg-gradient-to-r hover:from-[hsl(var(--second))] hover:to-[hsl(var(--second-rich))] hover:shadow-[0_6px_20px_hsl(var(--second)/0.6)] active:brightness-90;
+
+    /* Subtle shimmer effect */
+    &::after {
+      @apply content-[''] absolute top-0 left-[-100%] w-[50%] h-full bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-[-30deg] transition-all duration-700 ease-out;
     }
 
-    .btn-luxury {
-      @apply relative overflow-hidden bg-gradient-to-r from-[hsl(var(--secondary))] to-[hsl(var(--secondary-rich))] text-[hsl(var(--secondary-foreground))] px-8 py-3 rounded-lg shadow-[0_4px_15px_hsl(var(--secondary)/0.4)] transition-all duration-500 transition-luxury hover:bg-gradient-to-r hover:from-[hsl(var(--second))] hover:to-[hsl(var(--second-rich))] hover:shadow-[0_6px_20px_hsl(var(--second)/0.6)] active:brightness-90;
-
-      /* Subtle shimmer effect */
-      &::after {
-        @apply content-[''] absolute top-0 left-[-100%] w-[50%] h-full bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-[-30deg] transition-all duration-700 ease-out;
-      }
-
-      &:hover::after {
-        @apply left-[150%];
-      }
+    &:hover::after {
+      @apply left-[150%];
     }
   }
 
-  /* Or if you specifically want the cubic-bezier timing */
-  @layer utilities {
-    .transition-elegant {
-      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    }
+  .transition-elegant {
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .btn-luxury-alt {
