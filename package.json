@@ -9,14 +9,15 @@
     "build:nf": "cross-env NETLIFY=1 remix build",
     "build": "remix build",
     "dev:wrangler": "cross-env CF_PAGES=1 wrangler pages dev ./public",
-    "dev": "remix dev",
+    "dev": "remix dev --manual",
+    "dev:fast": "remix dev --manual --no-sourcemap",
     "dev:cf": "cross-env CF_PAGES=1 remix dev --manual -c \"yarn run dev:wrangler\"",
     "start:cf": "cross-env NODE_ENV=production yarn run dev:wrangler",
     "start": "remix-serve build",
     "generate": "graphql-codegen --config codegen.yml",
     "prepare": "husky install",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@graphql-codegen/typescript-generic-sdk": "^3.0.4",

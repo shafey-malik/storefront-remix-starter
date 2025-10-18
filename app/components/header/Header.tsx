@@ -68,45 +68,12 @@ export function Header({
         'w-full bg-white',
       )}
     >
-      {/* Top Header - Announcement Bar */}
-      <div className="bg-gray-900 text-white text-sm py-2">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="hidden sm:block">
-                {t('vendure.exclusive')}{' '}
-                <a
-                  href="https://github.com/vendure-ecommerce/storefront-remix-starter"
-                  target="_blank"
-                  className="underline hover:text-gray-300"
-                >
-                  {t('vendure.repoLinkLabel')}
-                </a>
-              </p>
-            </div>
-            <div className="flex items-center space-x-6 text-xs">
-              <Link
-                to={isSignedIn ? '/account' : '/sign-in'}
-                className="hover:text-gray-300 transition-colors flex items-center space-x-1"
-              >
-                <User className="w-3 h-3" />
-                <span>
-                  {isSignedIn ? t('account.myAccount') : t('account.signIn')}
-                </span>
-              </Link>
-              <span className="text-gray-400">Free Shipping Worldwide</span>
-              <span className="text-gray-400">Lifetime Warranty</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Main Header */}
       <div className="border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             {/* Left: Mobile Menu & Logo */}
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-1">
               {/* Mobile Menu Button */}
               <button
                 onClick={() => setIsMobileMenuOpen(true)}
@@ -116,15 +83,14 @@ export function Header({
               </button>
 
               {/* Logo */}
-              <Link to="/" className="flex items-center space-x-3">
-                <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center shadow-lg">
-                  <span className="text-white font-bold text-lg">E&A</span>
-                </div>
+              <Link
+                to="/"
+                className="flex items-center space-x-3 absolute left-1/2 transform -translate-x-1/2"
+              >
                 <div className="hidden sm:block">
-                  <h1 className="font-serif text-2xl font-bold text-gray-900 leading-tight">
+                  <h1 className="font-luxury-serif text-3xl font-bold text-gray-900 leading-tight">
                     Ever & Always
                   </h1>
-                  <p className="text-xs text-gray-600">Fine Diamond Jewelry</p>
                 </div>
               </Link>
             </div>
@@ -171,9 +137,9 @@ export function Header({
               )}
 
               {/* Wishlist */}
-              <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors relative">
+              {/* <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors relative">
                 <Heart className="w-5 h-5 text-gray-700" />
-              </button>
+              </button> */}
 
               {/* Account */}
               <Link

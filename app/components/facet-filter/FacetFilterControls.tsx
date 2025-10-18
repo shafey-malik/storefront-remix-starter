@@ -115,7 +115,7 @@ export default function FacetFilterControls({
                                         ) as HTMLInputElement
                                       ).checked = ev.target.checked;
                                     }}
-                                    className="h-4 w-4 border-gray-300 rounded text-primary-600 focus:ring-primary-500"
+                                    className="h-4 w-4 border-gray-300 rounded text-primary focus:ring-primary-500"
                                   />
                                   <label
                                     htmlFor={`filter-mobile-${facet.id}-${optionIdx}`}
@@ -177,7 +177,7 @@ export default function FacetFilterControls({
                           type="checkbox"
                           checked={value.selected}
                           onChange={() => {}}
-                          className="h-4 w-4 border-gray-300 rounded text-primary-600 focus:ring-primary-500"
+                          className="h-4 w-4 border-gray-300 rounded text-primary focus:ring-primary-500"
                         />
                         <label
                           htmlFor={`filter-${facet.id}-${optionIdx}`}

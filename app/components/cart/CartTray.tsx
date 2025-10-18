@@ -30,7 +30,7 @@ export function CartTray({
     <Transition.Root show={open} as={Fragment}>
       <Dialog
         as="div"
-        className="fixed inset-0 overflow-hidden z-20"
+        className="absolute inset-0 overflow-hidden z-20000"
         onClose={onClose}
       >
         <div className="absolute inset-0 overflow-hidden">
@@ -114,7 +114,7 @@ export function CartTray({
                         <Link
                           to="/checkout"
                           onClick={() => onClose(false)}
-                          className="flex justify-center items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-primary-600 hover:bg-primary-700"
+                          className="flex justify-center items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-secondary bg-primary hover:bg-primary/70"
                         >
                           {t('cart.checkout')}
                         </Link>

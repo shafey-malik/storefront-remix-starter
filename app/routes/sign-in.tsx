@@ -41,7 +41,7 @@ export default function SignInPage() {
             {t('common.or')}{' '}
             <Link
               to="/sign-up"
-              className="font-medium text-primary-600 hover:text-primary-500"
+              className="font-medium text-primary hover:text-primary-500"
             >
               {t('account.register')}
             </Link>
@@ -116,7 +116,7 @@ export default function SignInPage() {
                       id="rememberMe"
                       name="rememberMe"
                       type="checkbox"
-                      className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded disabled:bg-gray-300 disabled:cursor-not-allowed"
+                      className="h-4 w-4 text-primary focus:ring-primary-500 border-gray-300 rounded disabled:bg-gray-300 disabled:cursor-not-allowed"
                       defaultChecked
                     />
                     <label
@@ -130,7 +130,7 @@ export default function SignInPage() {
                   <div className="text-sm">
                     <a
                       href="#"
-                      className="font-medium text-primary-600 hover:text-primary-500"
+                      className="font-medium text-primary hover:text-primary-500"
                     >
                       {t('account.forgotPassword')}
                     </a>
@@ -161,7 +161,7 @@ export default function SignInPage() {
                 <div>
                   <Button
                     type="submit"
-                    className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                    className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
                   >
                     <span className="flex gap-4 items-center">
                       {login.state !== 'idle' && (
