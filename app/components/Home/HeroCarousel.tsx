@@ -116,7 +116,7 @@ const HeroCarousel = () => {
                   <motion.h1
                     initial={{ y: 0, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.6, duration: 2.1 }}
+                    transition={{ delay: 0.2, duration: 1.5 }}
                     className="font-luxury-serif text-3xl sm:text-4xl lg:text-6xl xl:text-7xl font-bold text-[hsl(var(--primary))] leading-snug sm:leading-tight"
                   >
                     {slides[currentSlide].title}
@@ -154,7 +154,7 @@ const HeroCarousel = () => {
             <motion.div
               initial={{ scale: 0.98, opacity: 0.1 }}
               animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.3, duration: 1.5 }}
+              transition={{ delay: 0.2, duration: 2 }}
               className="relative flex-1 min-h-[40vh] lg:min-h-0 w-full"
             >
               <img
@@ -192,12 +192,11 @@ const HeroCarousel = () => {
         </Button>
       </motion.div>
 
-      {/* Slide Indicators - smaller on mobile */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.8 }}
-        className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 sm:space-x-3"
+        className="absolute left-[47.5%] bottom-4 sm:bottom-8 transform -translate-x-1/2 flex space-x-2 sm:space-x-3"
       >
         {slides.map((_, index) => (
           <button
@@ -205,8 +204,8 @@ const HeroCarousel = () => {
             onClick={() => goToSlide(index)}
             className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-colors duration-300 ${
               index === currentSlide
-                ? 'bg-[hsl(var(--primary))]'
-                : 'bg-[hsl(var(--muted))] hover:bg-[hsl(var(--muted-foreground))]'
+                ? 'bg-[hsl(var(--platinum))]'
+                : 'bg-[hsl(var(--gold))] hover:bg-[hsl(var(--muted))]'
             }`}
           />
         ))}

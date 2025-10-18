@@ -255,7 +255,7 @@ export function Header({
             </div>
 
             {/* Dynamic Collections */}
-            {data.collections.map((collection) => (
+            {/* {data.collections.map((collection) => (
               <Link
                 key={collection.id}
                 to={'/collections/' + collection.slug}
@@ -264,7 +264,7 @@ export function Header({
               >
                 {collection.name}
               </Link>
-            ))}
+            ))} */}
 
             {/* Custom Jewelry */}
             <Link
