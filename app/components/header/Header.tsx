@@ -13,6 +13,8 @@ import { useRootLoader } from '~/utils/use-root-loader';
 import { useScrollingUp } from '~/utils/use-scrolling-up';
 import { classNames } from '~/utils/class-names';
 import { useTranslation } from 'react-i18next';
+import { Button } from '../ui/button';
+import { Input } from '../ui/input';
 
 export function Header({
   onCartIconClick,
@@ -66,7 +68,8 @@ export function Header({
       {/* Main Header */}
       <div className="">
         <div className="max-w-7xl mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
+          {/* Header main row */}
+          <div className="relative flex items-center justify-between">
             {/* Left: Mobile Menu & Logo */}
             <div className="flex items-center space-x-1">
               {/* Mobile Menu Button */}
@@ -74,82 +77,76 @@ export function Header({
                 onClick={() => setIsMobileMenuOpen(true)}
                 className="lg:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors"
               >
-                <Menu className="w-6 h-6 text-gray-700" />
+                <Menu className="w-6 h-6 text-[hsl(var(--secondary))]" />
               </button>
 
-              {/* Logo */}
+              {/* Logo — centered on desktop, inline on mobile */}
+              {/* Logo — centered on desktop, inline on mobile */}
               <Link
                 to="/"
-                className="flex items-center space-x-3 absolute left-1/2 transform -translate-x-1/2"
+                className="absolute left-1/2 transform -translate-x-1/2 flex items-center space-x-3"
               >
-                <div className="hidden sm:block">
-                  <h1 className="font-luxury-serif text-4xl font-bold text-gray-900 leading-tight">
-                    Ever & Always
-                  </h1>
-                </div>
+                <h1 className="text-nowrap font-luxury-serif text-3xl sm:text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
+                  Ever & Always
+                </h1>
               </Link>
             </div>
 
-            {/* Center: Desktop Navigation - Moved to secondary header */}
-
             {/* Right: Actions */}
             <div className="flex items-center space-x-4">
-              {/* Search */}
-              {showSearch ? (
-                <form
-                  onSubmit={handleSearch}
-                  className="flex items-center space-x-2"
-                >
-                  <input
-                    type="text"
-                    placeholder="Search diamonds, collections..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent w-64"
-                    autoFocus
-                  />
+              {/* Desktop Search (keep existing logic) */}
+              <div className="hidden lg:flex items-center space-x-2">
+                {showSearch ? (
+                  <form
+                    onSubmit={handleSearch}
+                    className="flex items-center space-x-2"
+                  >
+                    <input
+                      type="text"
+                      placeholder="Search diamonds, collections..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="px-3 py-2 border border-[hsl(var(--secondary))] rounded-lg  focus:[hsl(var(--secondary))] focus:border-transparent w-64"
+                      autoFocus
+                    />
+                    <button
+                      type="submit"
+                      className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                    >
+                      <Search className="w-5 h-5 text-[hsl(var(--secondary))]" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setShowSearch(false)}
+                      className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                    >
+                      <X className="w-5 h-5 text-gray-700" />
+                    </button>
+                  </form>
+                ) : (
                   <button
-                    type="submit"
+                    onClick={() => setShowSearch(true)}
                     className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
                   >
-                    <Search className="w-5 h-5 text-gray-700" />
+                    <Search className="w-5 h-5 text-[hsl(var(--secondary))]" />
                   </button>
-                  <button
-                    type="button"
-                    onClick={() => setShowSearch(false)}
-                    className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-                  >
-                    <X className="w-5 h-5 text-gray-700" />
-                  </button>
-                </form>
-              ) : (
-                <button
-                  onClick={() => setShowSearch(true)}
-                  className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-                >
-                  <Search className="w-5 h-5 text-gray-700" />
-                </button>
-              )}
+                )}
+              </div>
 
-              {/* Wishlist */}
-              {/* <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors relative">
-                <Heart className="w-5 h-5 text-gray-700" />
-              </button> */}
-
-              {/* Account */}
+              {/* Profile */}
               <Link
                 to={isSignedIn ? '/account' : '/sign-in'}
-                className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                className=" hover:bg-gray-100 rounded-lg transition-colors"
               >
-                <User className="w-5 h-5 text-gray-700" />
+                <User className="w-5 h-5 text-[hsl(var(--secondary))]" />
               </Link>
 
               {/* Cart */}
               <button
                 onClick={onCartIconClick}
-                className="p-2 hover:bg-gray-100 rounded-lg transition-colors relative"
+                className=" hover:bg-gray-100 rounded-lg transition-colors relative"
               >
-                <ShoppingBag className="w-5 h-5 text-gray-700" />
+                <ShoppingBag className="w-5 h-5 text-[hsl(var(--secondary))]" />
                 {cartQuantity > 0 && (
                   <div className="absolute -top-1 -right-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-medium">
                     {cartQuantity}
@@ -157,6 +154,37 @@ export function Header({
                 )}
               </button>
             </div>
+          </div>
+
+          {/* Mobile Search Field - Shown below title in mobile mode */}
+          <div className="md:hidden  mt-1">
+            <form
+              onSubmit={handleSearch}
+              className="relative flex items-center"
+            >
+              <Input
+                type="text"
+                placeholder="Search our collections..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="h-10 w-full pl-4 pr-12 py-2 font-luxury-sans text-sm 
+                border border-[hsl(var(--primary/50%))] rounded-lg
+                focus-visible:ring-2 focus-visible:ring-[hsl(var(--primary)/50%)]
+                focus-visible:ring-offset-2 focus-visible:border-transparent
+                bg-[hsl(var(--card))] shadow-sm"
+              />
+              <Button
+                variant="ghost"
+                size="lg"
+                type="submit"
+                className="absolute right-1 h-7 w-7 p-0 rounded-full
+            hover:bg-[hsl(var(--primary)/8%)] 
+            focus-visible:ring-1 focus-visible:ring-[hsl(var(--primary)/30%)]"
+              >
+                <Search className="w-[15px] h-[15px] text-[hsl(var(--secondary))]" />
+                {/* Changed from text-primary to text-secondary */}
+              </Button>
+            </form>
           </div>
         </div>
       </div>
@@ -294,19 +322,19 @@ export function Header({
               <div className="flex items-center justify-between">
                 <Link
                   to="/"
-                  className="flex items-center space-x-3"
+                  className="flex items-center "
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center">
+                  {/* <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center">
                     <span className="text-white font-bold">E&A</span>
-                  </div>
-                  <span className="font-serif text-xl font-bold text-gray-900">
+                  </div> */}
+                  <h1 className="font-luxury-serif text-2xl font-bold text-gray-900 leading-tight">
                     Ever & Always
-                  </span>
+                  </h1>
                 </Link>
                 <button
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="p-2 hover:bg-gray-100 rounded-lg"
+                  className=" hover:bg-gray-100 rounded-lg"
                 >
                   <X className="w-5 h-5 text-gray-700" />
                 </button>

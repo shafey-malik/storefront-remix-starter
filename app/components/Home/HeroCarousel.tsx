@@ -97,7 +97,7 @@ const HeroCarousel = () => {
           {/* Stack content vertically on mobile */}
           <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 h-full">
             {/* Content - takes only needed space on mobile */}
-            <div className="px-4 sm:px-6 lg:px-16 xl:px-24 py-6 sm:py-8 lg:py-0 z-10 flex flex-col justify-center bg-[hsl(var(--background))] lg:bg-transparent">
+            <div className="px-4 sm:px-6 lg:px-16 xl:px-24 py-6 sm:py-8 lg:py-0 z-1 flex flex-col justify-center bg-[hsl(var(--background))] lg:bg-transparent">
               <motion.div
                 initial={{ y: 20, opacity: 0.1 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -178,7 +178,7 @@ const HeroCarousel = () => {
           variant="ghost"
           size="sm"
           onClick={prevSlide}
-          className="absolute left-2 sm:left-6 top-1/2 transform -translate-y-1/2 bg-[hsl(var(--card))] hover:bg-[hsl(var(--surface-luxury))] shadow-[var(--shadow-card))] p-2 sm:p-3 z-50"
+          className="absolute left-2 sm:left-6 top-1/2 transform -translate-y-1/2 bg-[hsl(var(--card))] hover:bg-[hsl(var(--surface-luxury))] shadow-[var(--shadow-card))] p-2 sm:p-3 z-1"
         >
           <ChevronLeft className="w-4 h-4 sm:w-6 sm:h-6" />
         </Button>
@@ -186,7 +186,7 @@ const HeroCarousel = () => {
           variant="ghost"
           size="sm"
           onClick={nextSlide}
-          className="absolute right-2 sm:right-6 top-1/2 transform -translate-y-1/2 bg-[hsl(var(--card))] hover:bg-[hsl(var(--surface-luxury))] shadow-[var(--shadow-card))] p-2 sm:p-3 z-50"
+          className="absolute right-2 sm:right-6 top-1/2 transform -translate-y-1/2 bg-[hsl(var(--card))] hover:bg-[hsl(var(--surface-luxury))] shadow-[var(--shadow-card))] p-2 sm:p-3 z-1"
         >
           <ChevronRight className="w-4 h-4 sm:w-6 sm:h-6" />
         </Button>
