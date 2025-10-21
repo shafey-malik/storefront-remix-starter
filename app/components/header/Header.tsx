@@ -62,14 +62,9 @@ export function Header({
   };
 
   return (
-    <header
-      className={classNames(
-        isScrollingUp ? 'sticky top-0 z-50 shadow-lg' : '',
-        'w-full bg-white',
-      )}
-    >
+    <header className="w-full bg-[hsl(var(--card))] shadow-[var(--shadow-card)] sticky top-0 z-50">
       {/* Main Header */}
-      <div className="border-b border-gray-200">
+      <div className="">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             {/* Left: Mobile Menu & Logo */}
@@ -88,7 +83,7 @@ export function Header({
                 className="flex items-center space-x-3 absolute left-1/2 transform -translate-x-1/2"
               >
                 <div className="hidden sm:block">
-                  <h1 className="font-luxury-serif text-3xl font-bold text-gray-900 leading-tight">
+                  <h1 className="font-luxury-serif text-4xl font-bold text-gray-900 leading-tight">
                     Ever & Always
                   </h1>
                 </div>
@@ -167,7 +162,8 @@ export function Header({
       </div>
 
       {/* Secondary Header - Navigation */}
-      <div className="hidden lg:block border-b border-gray-200 bg-white">
+      <div className="hidden md:block border-t border-[hsl(var(--border))] bg-[hsl(var(--surface-luxury))]">
+        {' '}
         <div className="max-w-7xl mx-auto px-4">
           <nav className="flex items-center justify-center space-x-8">
             {/* Engagement Rings Dropdown */}
@@ -176,13 +172,13 @@ export function Header({
               onMouseEnter={() => setActiveDropdown('engagement')}
               onMouseLeave={() => setActiveDropdown(null)}
             >
-              <button className="flex items-center space-x-1 py-4 text-gray-700 hover:text-gray-900 font-medium transition-colors">
+              <button className="flex items-center rounded-md bg-[hsl(var(--card))] hover:rounded-b-none space-x-4 px-2 py-1.5 text-gray-700 hover:text-gray-900 font-medium transition-colors">
                 <span>Engagement Rings</span>
                 <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" />
               </button>
 
               {activeDropdown === 'engagement' && (
-                <div className="absolute top-full left-0 w-96 bg-white shadow-2xl border border-gray-200 rounded-lg z-50">
+                <div className="absolute top-full left-0 w-96 bg-[hsl(var(--card))] shadow-2xl border border-gray-200 rounded-lg z-50 rounded-tl-none">
                   <div className="p-6 grid grid-cols-2 gap-6">
                     {Object.entries(engagementCategories).map(
                       ([category, items]) => (
@@ -218,14 +214,14 @@ export function Header({
               onMouseEnter={() => setActiveDropdown('wedding')}
               onMouseLeave={() => setActiveDropdown(null)}
             >
-              <button className="flex items-center space-x-1 py-4 text-gray-700 hover:text-gray-900 font-medium transition-colors">
+              <button className="flex items-center rounded-md bg-[hsl(var(--card))] hover:rounded-b-none space-x-4 px-2 py-1.5 text-gray-700 hover:text-gray-900 font-medium transition-colors">
                 <span>Wedding Rings</span>
                 <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" />
               </button>
 
               {activeDropdown === 'wedding' && (
-                <div className="absolute top-full left-0 w-80 bg-white shadow-2xl border border-gray-200 rounded-lg z-50">
-                  <div className="p-6 space-y-4">
+                <div className="absolute top-full left-0 w-96 bg-[hsl(var(--card))] shadow-2xl border border-gray-200 rounded-lg z-50 rounded-tl-none">
+                  <div className="p-6 grid grid-cols-2 gap-6">
                     {Object.entries(weddingCategories).map(
                       ([category, items]) => (
                         <div key={category}>

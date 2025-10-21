@@ -168,7 +168,7 @@
   }
 
   .btn-luxury {
-    @apply relative overflow-hidden bg-gradient-to-r from-[hsl(var(--secondary))] to-[hsl(var(--secondary-rich))] text-[hsl(var(--secondary-foreground))] px-8 py-3 rounded-lg shadow-[0_4px_15px_hsl(var(--secondary)/0.4)] transition-all duration-500 transition-luxury hover:bg-gradient-to-r hover:from-[hsl(var(--second))] hover:to-[hsl(var(--second-rich))] hover:shadow-[0_6px_20px_hsl(var(--second)/0.6)] active:brightness-90;
+    @apply relative overflow-hidden bg-gradient-to-r from-[hsl(var(--secondary))] to-[hsl(var(--secondary))] text-[hsl(var(--secondary-foreground))] px-8 py-3 rounded-lg shadow-[0_4px_15px_hsl(var(--secondary)/0.4)] transition-all duration-500 transition-luxury hover:bg-gradient-to-r hover:from-[hsl(var(--second))] hover:to-[hsl(var(--second-rich))] hover:shadow-[0_6px_20px_hsl(var(--second)/0.6)] active:brightness-90;
 
     /* Subtle shimmer effect */
     &::after {
