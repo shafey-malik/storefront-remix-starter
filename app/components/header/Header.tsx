@@ -15,6 +15,7 @@ import { classNames } from '~/utils/class-names';
 import { useTranslation } from 'react-i18next';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
+import { SearchBar } from './SearchBar';
 
 export function Header({
   onCartIconClick,
@@ -97,32 +98,33 @@ export function Header({
               {/* Desktop Search (keep existing logic) */}
               <div className="hidden lg:flex items-center space-x-2">
                 {showSearch ? (
-                  <form
-                    onSubmit={handleSearch}
-                    className="flex items-center space-x-2"
-                  >
-                    <input
-                      type="text"
-                      placeholder="Search diamonds, collections..."
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      className="px-3 py-2 border border-[hsl(var(--secondary))] rounded-lg  focus:[hsl(var(--secondary))] focus:border-transparent w-64"
-                      autoFocus
-                    />
-                    <button
-                      type="submit"
-                      className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-                    >
-                      <Search className="w-5 h-5 text-[hsl(var(--secondary))]" />
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setShowSearch(false)}
-                      className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-                    >
-                      <X className="w-5 h-5 text-gray-700" />
-                    </button>
-                  </form>
+                  // <form
+                  //   onSubmit={handleSearch}
+                  //   className="flex items-center space-x-2"
+                  // >
+                  //   <input
+                  //     type="text"
+                  //     placeholder="Search diamonds, collections..."
+                  //     value={searchQuery}
+                  //     onChange={(e) => setSearchQuery(e.target.value)}
+                  //     className="px-3 py-2 border border-[hsl(var(--secondary))] rounded-lg  focus:[hsl(var(--secondary))] focus:border-transparent w-64"
+                  //     autoFocus
+                  //   />
+                  //   <button
+                  //     type="submit"
+                  //     className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                  //   >
+                  //     <Search className="w-5 h-5 text-[hsl(var(--secondary))]" />
+                  //   </button>
+                  //   <button
+                  //     type="button"
+                  //     onClick={() => setShowSearch(false)}
+                  //     className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                  //   >
+                  //     <X className="w-5 h-5 text-gray-700" />
+                  //   </button>
+                  // </form>
+                  <SearchBar />
                 ) : (
                   <button
                     onClick={() => setShowSearch(true)}
