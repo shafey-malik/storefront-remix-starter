@@ -27,10 +27,10 @@ export function CartTray({
   const { t } = useTranslation();
 
   return (
-    <Transition.Root show={open} as={Fragment}>
+    <Transition.Root show={open} as={Fragment} style={{ zIndex: 200 }}>
       <Dialog
         as="div"
-        className="absolute inset-0 overflow-hidden z-20000"
+        className="absolute inset-0 overflow-hidden z-200"
         onClose={onClose}
       >
         <div className="absolute inset-0 overflow-hidden">
