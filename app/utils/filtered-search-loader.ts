@@ -22,6 +22,13 @@ export function filteredSearchLoaderFromPagination(
       const url = new URL(request.url);
       const term = url.searchParams.get('q');
       const facetValueIds = url.searchParams.getAll('fvid');
+
+      // Better price parsing that handles decimals
+      const minPriceParam = url.searchParams.get('minPrice');
+      const maxPriceParam = url.searchParams.get('maxPrice');
+      const minPrice = minPriceParam ? parseFloat(minPriceParam) : 0;
+      const maxPrice = maxPriceParam ? parseFloat(maxPriceParam) : 100000;
+
       const limit =
         url.searchParams.get('limit') ?? paginationLimitMinimumDefault;
       const page = url.searchParams.get('page') ?? 1;
@@ -76,6 +83,8 @@ export function filteredSearchLoaderFromPagination(
         resultWithoutFacetValueFilters: resultWithoutFacetValueFilters.search,
         appliedPaginationLimit: zodResult.data.limit,
         appliedPaginationPage: zodResult.data.page,
+        facetValues: result.search.facetValues,
+        priceRange: { min: minPrice, max: maxPrice },
       };
     },
   };

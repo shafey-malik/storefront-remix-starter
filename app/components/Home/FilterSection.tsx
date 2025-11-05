@@ -26,15 +26,13 @@ interface FilterSectionProps {
 }
 
 const FilterSection = ({ facetValues }: FilterSectionProps) => {
-  const [caratRange, setCaratRange] = useState([1, 3]);
-  const [priceRange, setPriceRange] = useState([5000, 50000]);
+  const [priceRange, setPriceRange] = useState([1000, 50000]);
   const [selectedFacets, setSelectedFacets] = useState<Record<string, string>>({
     shape: '',
     setting: '',
     metal: '',
     size: '',
   });
-  const [showAdvanced, setShowAdvanced] = useState(false);
 
   // Group facets by type
   const facetGroups =
@@ -58,9 +56,9 @@ const FilterSection = ({ facetValues }: FilterSectionProps) => {
       setting: '',
       metal: '',
       size: '',
+      carat: '',
     });
-    setCaratRange([1, 3]);
-    setPriceRange([5000, 50000]);
+    setPriceRange([1000, 50000]);
   };
 
   const navigateToSearch = () => {
@@ -73,7 +71,10 @@ const FilterSection = ({ facetValues }: FilterSectionProps) => {
       }
     });
 
-    // Navigate to search page with filters
+    // Convert dollar prices to cents for Vendure
+    params.append('minPrice', (priceRange[0] * 100).toString());
+    params.append('maxPrice', (priceRange[1] * 100).toString());
+
     window.location.href = `/search?${params.toString()}`;
   };
 
@@ -82,6 +83,7 @@ const FilterSection = ({ facetValues }: FilterSectionProps) => {
   const settingFacets = facetGroups['setting'] || [];
   const metalFacets = facetGroups['metal'] || [];
   const sizeFacets = facetGroups['size'] || [];
+  const caratFacets = facetGroups['carat'] || [];
 
   return (
     <section className="py-20 bg-[hsl(var(--background))]">
@@ -185,56 +187,54 @@ const FilterSection = ({ facetValues }: FilterSectionProps) => {
                 </SelectContent>
               </Select>
             </div>
+            {/* Carat Filter - Dynamic */}
+            <div className="space-y-3">
+              <label className="font-luxury-sans text-sm font-semibold text-[hsl(var(--primary))] block">
+                Carat
+              </label>
+              <Select
+                value={selectedFacets.carat}
+                onValueChange={(value) => handleFilterChange('carat', value)}
+              >
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Select Carat" />
+                </SelectTrigger>
+                <SelectContent>
+                  {caratFacets.map((facet) => (
+                    <SelectItem key={facet.id} value={facet.id}>
+                      {facet.name} ({facet.count})
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
           </div>
 
-          {/* Range Sliders */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 pt-8 border-t border-[hsl(var(--border))]">
-            {/* Carat Weight Range */}
-            <div className="space-y-4">
-              <div className="flex justify-between items-center">
-                <label className="font-luxury-sans text-sm font-semibold text-[hsl(var(--primary))]">
-                  Carat Weight
-                </label>
-                <span className="font-luxury-sans text-sm text-[hsl(var(--muted-foreground))]">
-                  {caratRange[0]} - {caratRange[1]} ct
-                </span>
-              </div>
-              <Slider
-                value={caratRange}
-                onValueChange={setCaratRange}
-                max={5}
-                min={0.5}
-                step={0.1}
-                className="w-full relative"
-              />
-              <div className="flex justify-between text-xs text-[hsl(var(--muted-foreground))] font-luxury-sans">
-                <span>0.5 ct</span>
-                <span>5.0 ct</span>
-              </div>
-            </div>
-
-            {/* Price Range */}
-            <div className="space-y-4">
-              <div className="flex justify-between items-center">
-                <label className="font-luxury-sans text-sm font-semibold text-[hsl(var(--primary))]">
-                  Price Range
-                </label>
-                <span className="font-luxury-sans text-sm text-[hsl(var(--muted-foreground))]">
-                  ${priceRange[0].toLocaleString()} - $
-                  {priceRange[1].toLocaleString()}
-                </span>
-              </div>
-              <Slider
-                value={priceRange}
-                onValueChange={setPriceRange}
-                max={100000}
-                min={1000}
-                step={1000}
-                className="w-full"
-              />
-              <div className="flex justify-between text-xs text-[hsl(var(--muted-foreground))] font-luxury-sans">
-                <span>$1,000</span>
-                <span>$100,000+</span>
+          {/* Price Range Slider Only */}
+          <div className="mt-8 pt-8 border-t border-[hsl(var(--border))]">
+            <div className="max-w-2xl mx-auto">
+              <div className="space-y-4">
+                <div className="flex justify-between items-center">
+                  <label className="font-luxury-sans text-sm font-semibold text-[hsl(var(--primary))]">
+                    Price Range
+                  </label>
+                  <span className="font-luxury-sans text-sm text-[hsl(var(--muted-foreground))]">
+                    ${priceRange[0].toLocaleString()} - $
+                    {priceRange[1].toLocaleString()}
+                  </span>
+                </div>
+                <Slider
+                  value={priceRange}
+                  onValueChange={setPriceRange}
+                  max={100000}
+                  min={100}
+                  step={100}
+                  className="w-full"
+                />
+                <div className="flex justify-between text-xs text-[hsl(var(--muted-foreground))] font-luxury-sans">
+                  <span>$100</span>
+                  <span>$100,000+</span>
+                </div>
               </div>
             </div>
           </div>
@@ -244,14 +244,6 @@ const FilterSection = ({ facetValues }: FilterSectionProps) => {
             <Button className="btn-luxury flex-1" onClick={navigateToSearch}>
               <Search className="w-5 h-5 mr-2" />
               Search Rings
-            </Button>
-            <Button
-              variant="outline"
-              className="px-8 border-[hsl(var(--primary))] text-[hsl(var(--primary))] hover:bg-[hsl(var(--primary))] hover:text-[hsl(var(--primary-foreground))]"
-              onClick={() => setShowAdvanced(!showAdvanced)}
-            >
-              <SlidersHorizontal className="w-5 h-5 mr-2" />
-              {showAdvanced ? 'Hide Advanced' : 'Advanced Filters'}
             </Button>
             <Button
               variant="ghost"
