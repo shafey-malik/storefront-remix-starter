@@ -11,31 +11,77 @@ import {
 import { Slider } from '../ui/slider';
 import { Button } from '../ui/button';
 
-const FilterSection = () => {
+interface FilterSectionProps {
+  facetValues: Array<{
+    count: number;
+    facetValue: {
+      id: string;
+      name: string;
+      facet: {
+        id: string;
+        name: string;
+      };
+    };
+  }>;
+}
+
+const FilterSection = ({ facetValues }: FilterSectionProps) => {
   const [caratRange, setCaratRange] = useState([1, 3]);
   const [priceRange, setPriceRange] = useState([5000, 50000]);
-  const [filters, setFilters] = useState({
-    cut: '',
-    style: '',
-    material: '',
+  const [selectedFacets, setSelectedFacets] = useState<Record<string, string>>({
+    shape: '',
+    setting: '',
+    metal: '',
     size: '',
   });
   const [showAdvanced, setShowAdvanced] = useState(false);
 
-  const handleFilterChange = (key: any, value: any) => {
-    setFilters((prev) => ({ ...prev, [key]: value }));
+  // Group facets by type
+  const facetGroups =
+    facetValues?.reduce((groups, { facetValue, count }) => {
+      const facetName = facetValue.facet.name.toLowerCase();
+      if (!groups[facetName]) groups[facetName] = [];
+      groups[facetName].push({ ...facetValue, count });
+      return groups;
+    }, {} as Record<string, any[]>) || {};
+
+  const handleFilterChange = (facetType: string, facetValueId: string) => {
+    setSelectedFacets((prev) => ({
+      ...prev,
+      [facetType]: facetValueId === prev[facetType] ? '' : facetValueId,
+    }));
   };
 
   const resetFilters = () => {
-    setFilters({
-      cut: '',
-      style: '',
-      material: '',
+    setSelectedFacets({
+      shape: '',
+      setting: '',
+      metal: '',
       size: '',
     });
     setCaratRange([1, 3]);
     setPriceRange([5000, 50000]);
   };
+
+  const navigateToSearch = () => {
+    const params = new URLSearchParams();
+
+    // Add selected facet values
+    Object.values(selectedFacets).forEach((facetValueId) => {
+      if (facetValueId) {
+        params.append('fvid', facetValueId);
+      }
+    });
+
+    // Navigate to search page with filters
+    window.location.href = `/search?${params.toString()}`;
+  };
+
+  // Get available facet values
+  const shapeFacets = facetGroups['shape'] || [];
+  const settingFacets = facetGroups['setting'] || [];
+  const metalFacets = facetGroups['metal'] || [];
+  const sizeFacets = facetGroups['size'] || [];
 
   return (
     <section className="py-20 bg-[hsl(var(--background))]">
@@ -52,101 +98,90 @@ const FilterSection = () => {
 
         <Card className="card-luxury p-8 max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Diamond Cut Filter */}
+            {/* Shape Filter - Dynamic */}
             <div className="space-y-3">
               <label className="font-luxury-sans text-sm font-semibold text-[hsl(var(--primary))] block">
-                Diamond Cut
+                Diamond Shape
               </label>
               <Select
-                value={filters.cut}
-                onValueChange={(value) => handleFilterChange('cut', value)}
+                value={selectedFacets.shape}
+                onValueChange={(value) => handleFilterChange('shape', value)}
               >
                 <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select cut" />
+                  <SelectValue placeholder="Select shape" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="round">Round Brilliant</SelectItem>
-                  <SelectItem value="princess">Princess</SelectItem>
-                  <SelectItem value="emerald">Emerald</SelectItem>
-                  <SelectItem value="oval">Oval</SelectItem>
-                  <SelectItem value="cushion">Cushion</SelectItem>
-                  <SelectItem value="pear">Pear</SelectItem>
-                  <SelectItem value="radiant">Radiant</SelectItem>
-                  <SelectItem value="asscher">Asscher</SelectItem>
+                  {shapeFacets.map((facet) => (
+                    <SelectItem key={facet.id} value={facet.id}>
+                      {facet.name} ({facet.count})
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
             </div>
 
-            {/* Design Style Filter */}
+            {/* Setting Filter - Dynamic */}
             <div className="space-y-3">
               <label className="font-luxury-sans text-sm font-semibold text-[hsl(var(--primary))] block">
-                Design Style
+                Setting Style
               </label>
               <Select
-                value={filters.style}
-                onValueChange={(value) => handleFilterChange('style', value)}
+                value={selectedFacets.setting}
+                onValueChange={(value) => handleFilterChange('setting', value)}
               >
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="Select style" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="solitaire">Solitaire</SelectItem>
-                  <SelectItem value="halo">Halo</SelectItem>
-                  <SelectItem value="vintage">Vintage</SelectItem>
-                  <SelectItem value="modern">Modern</SelectItem>
-                  <SelectItem value="pavé">Pavé</SelectItem>
-                  <SelectItem value="three-stone">Three Stone</SelectItem>
+                  {settingFacets.map((facet) => (
+                    <SelectItem key={facet.id} value={facet.id}>
+                      {facet.name} ({facet.count})
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
             </div>
 
-            {/* Ring Material Filter */}
+            {/* Metal Filter - Dynamic */}
             <div className="space-y-3">
               <label className="font-luxury-sans text-sm font-semibold text-[hsl(var(--primary))] block">
                 Ring Material
               </label>
               <Select
-                value={filters.material}
-                onValueChange={(value) => handleFilterChange('material', value)}
+                value={selectedFacets.metal}
+                onValueChange={(value) => handleFilterChange('metal', value)}
               >
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="Select material" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="platinum">Platinum</SelectItem>
-                  <SelectItem value="white-gold">18K White Gold</SelectItem>
-                  <SelectItem value="yellow-gold">18K Yellow Gold</SelectItem>
-                  <SelectItem value="rose-gold">18K Rose Gold</SelectItem>
-                  <SelectItem value="two-tone">Two-Tone</SelectItem>
+                  {metalFacets.map((facet) => (
+                    <SelectItem key={facet.id} value={facet.id}>
+                      {facet.name} ({facet.count})
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
             </div>
 
-            {/* Ring Size Filter */}
+            {/* Size Filter - Dynamic */}
             <div className="space-y-3">
               <label className="font-luxury-sans text-sm font-semibold text-[hsl(var(--primary))] block">
                 Ring Size
               </label>
               <Select
-                value={filters.size}
+                value={selectedFacets.size}
                 onValueChange={(value) => handleFilterChange('size', value)}
               >
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="Select size" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="4">Size 4</SelectItem>
-                  <SelectItem value="4.5">Size 4.5</SelectItem>
-                  <SelectItem value="5">Size 5</SelectItem>
-                  <SelectItem value="5.5">Size 5.5</SelectItem>
-                  <SelectItem value="6">Size 6</SelectItem>
-                  <SelectItem value="6.5">Size 6.5</SelectItem>
-                  <SelectItem value="7">Size 7</SelectItem>
-                  <SelectItem value="7.5">Size 7.5</SelectItem>
-                  <SelectItem value="8">Size 8</SelectItem>
-                  <SelectItem value="8.5">Size 8.5</SelectItem>
-                  <SelectItem value="9">Size 9</SelectItem>
-                  <SelectItem value="custom">Custom Size</SelectItem>
+                  {sizeFacets.map((facet) => (
+                    <SelectItem key={facet.id} value={facet.id}>
+                      {facet.name} ({facet.count})
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
             </div>
@@ -204,85 +239,9 @@ const FilterSection = () => {
             </div>
           </div>
 
-          {/* Advanced Filters (Conditional) */}
-          {showAdvanced && (
-            <div className="mt-8 pt-8 border-t border-[hsl(var(--border))]">
-              <h3 className="font-luxury-sans text-lg font-semibold text-[hsl(var(--primary))] mb-6">
-                Advanced Filters
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div className="space-y-3">
-                  <label className="font-luxury-sans text-sm font-semibold text-[hsl(var(--primary))] block">
-                    Diamond Color
-                  </label>
-                  <Select>
-                    <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Select color" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="d">D (Colorless)</SelectItem>
-                      <SelectItem value="e">E</SelectItem>
-                      <SelectItem value="f">F</SelectItem>
-                      <SelectItem value="g">G (Near Colorless)</SelectItem>
-                      <SelectItem value="h">H</SelectItem>
-                      <SelectItem value="i">I</SelectItem>
-                      <SelectItem value="j">J (Near Colorless)</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div className="space-y-3">
-                  <label className="font-luxury-sans text-sm font-semibold text-[hsl(var(--primary))] block">
-                    Diamond Clarity
-                  </label>
-                  <Select>
-                    <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Select clarity" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="fl">FL (Flawless)</SelectItem>
-                      <SelectItem value="if">
-                        IF (Internally Flawless)
-                      </SelectItem>
-                      <SelectItem value="vvs1">
-                        VVS1 (Very Very Slightly Included)
-                      </SelectItem>
-                      <SelectItem value="vvs2">VVS2</SelectItem>
-                      <SelectItem value="vs1">
-                        VS1 (Very Slightly Included)
-                      </SelectItem>
-                      <SelectItem value="vs2">VS2</SelectItem>
-                      <SelectItem value="si1">
-                        SI1 (Slightly Included)
-                      </SelectItem>
-                      <SelectItem value="si2">SI2</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div className="space-y-3">
-                  <label className="font-luxury-sans text-sm font-semibold text-[hsl(var(--primary))] block">
-                    Certification
-                  </label>
-                  <Select>
-                    <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Select certification" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="gia">GIA</SelectItem>
-                      <SelectItem value="ags">AGS</SelectItem>
-                      <SelectItem value="igi">IGI</SelectItem>
-                      <SelectItem value="hrd">HRD</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
-            </div>
-          )}
-
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 mt-8 pt-8 border-t border-[hsl(var(--border))]">
-            <Button className="btn-luxury flex-1">
+            <Button className="btn-luxury flex-1" onClick={navigateToSearch}>
               <Search className="w-5 h-5 mr-2" />
               Search Rings
             </Button>

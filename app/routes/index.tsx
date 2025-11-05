@@ -1,6 +1,6 @@
 import { useLoaderData } from '@remix-run/react';
 import { getCollections } from '~/providers/collections/collections';
-import { CollectionCard } from '~/components/collections/CollectionCard';
+import { searchFacetValues } from '~/providers/products/products'; // Add this import
 import { BookOpenIcon } from '@heroicons/react/24/solid';
 import { LoaderArgs } from '@remix-run/server-runtime';
 import { useTranslation } from 'react-i18next';
@@ -11,14 +11,26 @@ import FilterSection from '~/components/Home/FilterSection';
 import DiamondSelector from '~/components/Home/DiamondSelector';
 
 export async function loader({ request }: LoaderArgs) {
-  const collections = await getCollections(request, { take: 20 });
+  const [collections, facetValues] = await Promise.all([
+    getCollections(request, { take: 20 }),
+    searchFacetValues(
+      {
+        input: {
+          groupByProduct: true,
+        },
+      },
+      { request },
+    ).then((result) => result.search.facetValues),
+  ]);
+
   return {
     collections,
+    facetValues,
   };
 }
 
 export default function Index() {
-  const { collections } = useLoaderData<typeof loader>();
+  const { collections, facetValues } = useLoaderData<typeof loader>();
   const { t } = useTranslation();
   const headerImage = collections[0]?.featuredAsset?.preview;
 
@@ -30,7 +42,7 @@ export default function Index() {
       </AnimatedSection>
 
       <AnimatedSection delay={0.3}>
-        <FilterSection />
+        <FilterSection facetValues={facetValues} />
       </AnimatedSection>
 
       <AnimatedSection delay={0.4}>
