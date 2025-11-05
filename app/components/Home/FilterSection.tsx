@@ -72,8 +72,8 @@ const FilterSection = ({ facetValues }: FilterSectionProps) => {
     });
 
     // Convert dollar prices to cents for Vendure
-    params.append('minPrice', (priceRange[0] * 100).toString());
-    params.append('maxPrice', (priceRange[1] * 100).toString());
+    params.append('minPrice', priceRange[0].toString());
+    params.append('maxPrice', priceRange[1].toString());
 
     window.location.href = `/search?${params.toString()}`;
   };
@@ -98,7 +98,14 @@ const FilterSection = ({ facetValues }: FilterSectionProps) => {
           </p>
         </div>
 
-        <Card className="card-luxury p-8 max-w-6xl mx-auto">
+        <Card
+          className="card-luxury p-8 max-w-6xl mx-auto min-h-[600px]"
+          style={{
+            marginTop: '-10px' /* This causes jumping */,
+            padding: '2rem' /* This causes jumping */,
+            transform: 'translateY(-5px)' /* This might be intentional */,
+          }}
+        >
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Shape Filter - Dynamic */}
             <div className="space-y-3">
@@ -227,12 +234,12 @@ const FilterSection = ({ facetValues }: FilterSectionProps) => {
                   value={priceRange}
                   onValueChange={setPriceRange}
                   max={100000}
-                  min={100}
+                  min={0}
                   step={100}
                   className="w-full"
                 />
                 <div className="flex justify-between text-xs text-[hsl(var(--muted-foreground))] font-luxury-sans">
-                  <span>$100</span>
+                  <span>$0</span>
                   <span>$100,000+</span>
                 </div>
               </div>
