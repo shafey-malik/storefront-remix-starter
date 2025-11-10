@@ -224,6 +224,7 @@ export default function ProductSlug() {
               />
             </div>
             <activeOrderFetcher.Form method="post" action="/api/active-order">
+              <input type="hidden" name="action" value="addItemToOrder" />
               {/* Hidden input for form submission - maintains cart functionality */}
               <input type="hidden" name="variantId" value={selectedVariantId} />
 
