@@ -31,6 +31,7 @@ import { useActiveOrder } from '~/utils/use-active-order';
 import { useChangeLanguage } from 'remix-i18next';
 import { useTranslation } from 'react-i18next';
 import { getI18NextServer } from '~/i18next.server';
+import { enhanceSelects } from './utils/enhancedSelects';
 
 export const meta: MetaFunction = () => {
   return [{ title: APP_META_TITLE }, { description: APP_META_DESCRIPTION }];
@@ -112,6 +113,9 @@ export default function App() {
     // of the activeOrder as the user may have signed in or out.
     refresh();
   }, [loaderData]);
+  useEffect(() => {
+    enhanceSelects({ observe: true, debug: false, retryMs: 1500 });
+  }, []);
 
   return (
     <html lang={locale} dir={i18n.dir()} id="app">
