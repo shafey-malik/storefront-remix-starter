@@ -10,7 +10,7 @@ export function Breadcrumbs({
   const { t } = useTranslation();
 
   return (
-    <nav className="flex" aria-label="Breadcrumb">
+    <nav className="flex mt-5" aria-label="Breadcrumb">
       <ol role="list" className="flex items-center space-x-1 md:space-x-4">
         <li>
           <div>

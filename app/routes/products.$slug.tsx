@@ -52,6 +52,72 @@ export async function loader({ params, request }: DataFunctionArgs) {
     },
   );
 }
+// Helper function to extract the key option from variant name
+// Enhanced helper function with fallbacks
+function extractVariantDisplayName(
+  variantName: string | undefined,
+  productName: string,
+): string {
+  if (!variantName) return 'Option';
+
+  let displayName = variantName;
+
+  // Only remove product name if it's at the beginning
+  if (productName && variantName.startsWith(productName)) {
+    displayName = variantName.slice(productName.length).trim();
+  }
+
+  // Clean up separators
+  displayName = displayName
+    .replace(/^[\s|,-]+/, '')
+    .replace(/[\s|,-]+$/, '')
+    .trim();
+
+  // If empty after cleanup, try to extract from pipes
+  if (!displayName && variantName.includes('|')) {
+    const parts = variantName.split('|').map((part) => part.trim());
+    // Take the last meaningful part
+    displayName = parts[parts.length - 1] || parts[0] || 'Option';
+  }
+
+  // Final fallback
+  if (!displayName) {
+    return variantName.length > 20
+      ? variantName.substring(0, 20) + '...'
+      : variantName;
+  }
+
+  return displayName
+    .split(' ')
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(' ');
+}
+// Alternative: Simple space-based splitting with length limits
+function splitVariantOptionsSimple(variantName: string): string[] {
+  if (!variantName) return ['Option'];
+
+  const words = variantName.split(' ').filter((word) => word.trim().length > 0);
+  const result: string[] = [];
+  let currentLine = '';
+
+  for (const word of words) {
+    if (currentLine.length + word.length > 12) {
+      // Start new line if too long
+      if (currentLine) {
+        result.push(currentLine);
+      }
+      currentLine = word;
+    } else {
+      currentLine = currentLine ? `${currentLine} ${word}` : word;
+    }
+  }
+
+  if (currentLine) {
+    result.push(currentLine);
+  }
+
+  return result.length > 0 ? result : [variantName];
+}
 
 export const shouldRevalidate: ShouldRevalidateFunction = () => true;
 
@@ -95,15 +161,13 @@ export default function ProductSlug() {
   return (
     <div>
       <div className="max-w-6xl mx-auto px-4">
-        <h2 className="text-3xl sm:text-5xl font-light tracking-tight text-gray-900 my-8">
-          {product.name}
-        </h2>
         <Breadcrumbs
           items={
             product.collections[product.collections.length - 1]?.breadcrumbs ??
             []
           }
         ></Breadcrumbs>
+
         <div className="lg:grid lg:grid-cols-2 lg:gap-x-8 lg:items-start mt-4 md:mt-12">
           {/* Image gallery */}
           <div className="w-full max-w-2xl mx-auto sm:block lg:max-w-none">
@@ -162,34 +226,114 @@ export default function ProductSlug() {
             <activeOrderFetcher.Form method="post" action="/api/active-order">
               <input type="hidden" name="action" value="addItemToOrder" />
               {1 < product.variants.length ? (
-                <div className="mt-4">
-                  <label
-                    htmlFor="option"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    {t('product.selectOption')}
-                  </label>
-                  <select
-                    className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm rounded-md"
-                    id="productVariant"
-                    value={selectedVariantId}
+                <>
+                  {/* Hidden input for form submission - maintains cart functionality */}
+                  <input
+                    type="hidden"
                     name="variantId"
-                    onChange={(e) => {
-                      setSelectedVariantId(e.target.value);
+                    value={selectedVariantId}
+                  />
 
-                      const variant = findVariantById(e.target.value);
-                      if (variant) {
-                        setFeaturedAsset(variant!.featuredAsset);
-                      }
-                    }}
-                  >
-                    {product.variants.map((variant) => (
-                      <option key={variant.id} value={variant.id}>
-                        {variant.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
+                  {/* Selected variant display above boxes - WITH BASE PRODUCT NAME */}
+                  <div className="mt-4 mb-3 flex items-baseline gap-3">
+                    <h2 className="text-2xl sm:text-3xl font-light tracking-tight text-gray-900">
+                      {product.name}
+                    </h2>
+                    <div className="text-3xl font-light text-gray-900">
+                      {extractVariantDisplayName(
+                        selectedVariant?.name,
+                        product.name,
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Horizontal scrollable box selector */}
+                  <div className="mt-2">
+                    <label className="block text-sm font-medium text-gray-700 mb-3">
+                      {t('product.selectOption')}
+                    </label>
+
+                    <div className="flex overflow-x-auto gap-3 py-4 -mx-1 px-1">
+                      {product.variants.map((variant) => {
+                        const isSelected = selectedVariantId === variant.id;
+                        const isOutOfStock =
+                          variant.stockLevel === 'OUT_OF_STOCK';
+                        const variantOption = extractVariantDisplayName(
+                          variant.name,
+                          product.name,
+                        );
+
+                        return (
+                          <button
+                            key={variant.id}
+                            type="button"
+                            onClick={() => {
+                              setSelectedVariantId(variant.id);
+                              if (variant.featuredAsset)
+                                setFeaturedAsset(variant.featuredAsset);
+                            }}
+                            disabled={isOutOfStock}
+                            className={`
+                flex-shrink-0
+                w-36
+                px-3 py-4
+                border-2 rounded-lg
+                text-center
+                bg-white
+                transition-all
+                ${
+                  isSelected
+                    ? 'border-[hsl(var(--secondary))] bg-primary-50'
+                    : 'border-gray-200 hover:border-[hsl(var(--secondary))]'
+                }
+                ${
+                  isOutOfStock
+                    ? 'opacity-40 cursor-not-allowed'
+                    : 'cursor-pointer hover:shadow-md'
+                }
+              `}
+                          >
+                            {variant.featuredAsset && (
+                              <div className="w-16 h-16 mx-auto mb-2 rounded overflow-hidden border border-gray-100">
+                                <img
+                                  src={
+                                    variant.featuredAsset.preview + '?w=80&h=80'
+                                  }
+                                  alt=""
+                                  className="w-full h-full object-cover"
+                                />
+                              </div>
+                            )}
+
+                            {/* VERTICALLY STACKED VARIANT OPTIONS */}
+                            <div className="text-xs font-medium text-gray-900 space-y-1">
+                              {splitVariantOptionsSimple(variantOption).map(
+                                (optionPart, index) => (
+                                  <div key={index} className="leading-tight">
+                                    {optionPart}
+                                  </div>
+                                ),
+                              )}
+                            </div>
+
+                            <div className="text-xs text-gray-600 mt-2">
+                              <Price
+                                priceWithTax={variant.priceWithTax}
+                                currencyCode={variant.currencyCode}
+                              />
+                            </div>
+
+                            {isOutOfStock && (
+                              <div className="text-xs text-red-600 mt-1">
+                                Out of Stock
+                              </div>
+                            )}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </>
               ) : (
                 <input
                   type="hidden"
