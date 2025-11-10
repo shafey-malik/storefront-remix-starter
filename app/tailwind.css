@@ -240,3 +240,12 @@
   scrollbar-width: thin;
   scrollbar-color: hsl(45, 59%, 68%) hsl(0, 0%, 98%);
 }
+
+
+/* Custom scrollbar for variant selector only */
+
+/* For Firefox */
+.custom-variant-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #c4c4c47e #f1f1f100;
+}

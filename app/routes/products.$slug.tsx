@@ -224,123 +224,179 @@ export default function ProductSlug() {
               />
             </div>
             <activeOrderFetcher.Form method="post" action="/api/active-order">
-              <input type="hidden" name="action" value="addItemToOrder" />
-              {1 < product.variants.length ? (
-                <>
-                  {/* Hidden input for form submission - maintains cart functionality */}
-                  <input
-                    type="hidden"
-                    name="variantId"
-                    value={selectedVariantId}
-                  />
+              {/* Hidden input for form submission - maintains cart functionality */}
+              <input type="hidden" name="variantId" value={selectedVariantId} />
 
-                  {/* Selected variant display above boxes - WITH BASE PRODUCT NAME */}
-                  <div className="mt-4 mb-3 flex items-baseline gap-3">
-                    <h2 className="text-2xl sm:text-3xl font-light tracking-tight text-gray-900">
-                      {product.name}
-                    </h2>
-                    <div className="text-3xl font-light text-gray-900">
-                      {extractVariantDisplayName(
-                        selectedVariant?.name,
+              {/* Selected variant display above boxes - WITH BASE PRODUCT NAME */}
+              <div className="mt-4 mb-3 flex items-baseline gap-3">
+                <h2 className="text-2xl sm:text-3xl font-light tracking-tight text-gray-900">
+                  {product.name}
+                </h2>
+                <div className="text-3xl font-light text-gray-900">
+                  {extractVariantDisplayName(
+                    selectedVariant?.name,
+                    product.name,
+                  )}
+                </div>
+              </div>
+
+              {/* Horizontal scrollable box selector WITH ARROWS */}
+              {/* Horizontal scrollable box selector - ALWAYS VISIBLE ARROWS */}
+              {/* Horizontal scrollable box selector - HOVER ONLY ARROWS */}
+              <div className="mt-2">
+                <label className="block text-sm font-medium text-gray-700 mb-3">
+                  {t('product.selectOption')}
+                </label>
+
+                <div className="relative group">
+                  {/* Left Arrow - Shows on hover only */}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const container = document.getElementById(
+                        'variant-scroll-container',
+                      );
+                      if (container) {
+                        container.scrollLeft -= 200;
+                      }
+                    }}
+                    className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white/95 backdrop-blur-sm border border-[hsl(var(--secondary))] rounded-full p-1.5 shadow-lg hover:bg-white hover:shadow-xl transition-all opacity-0 group-hover:opacity-100 -ml-2"
+                    aria-label="Scroll left"
+                  >
+                    <svg
+                      className="w-4 h-4 text-[hsl(var(--secondary))]"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15 19l-7-7 7-7"
+                      />
+                    </svg>
+                  </button>
+
+                  {/* Scroll Container - Full width for more boxes */}
+                  <div
+                    id="variant-scroll-container"
+                    className="flex overflow-x-auto gap-3 py-4 scroll-smooth custom-variant-scrollbar"
+                  >
+                    {product.variants.map((variant) => {
+                      const isSelected = selectedVariantId === variant.id;
+                      const isOutOfStock =
+                        variant.stockLevel === 'OUT_OF_STOCK';
+                      const variantOption = extractVariantDisplayName(
+                        variant.name,
                         product.name,
-                      )}
-                    </div>
-                  </div>
+                      );
 
-                  {/* Horizontal scrollable box selector */}
-                  <div className="mt-2">
-                    <label className="block text-sm font-medium text-gray-700 mb-3">
-                      {t('product.selectOption')}
-                    </label>
-
-                    <div className="flex overflow-x-auto gap-3 py-4 -mx-1 px-1">
-                      {product.variants.map((variant) => {
-                        const isSelected = selectedVariantId === variant.id;
-                        const isOutOfStock =
-                          variant.stockLevel === 'OUT_OF_STOCK';
-                        const variantOption = extractVariantDisplayName(
-                          variant.name,
-                          product.name,
-                        );
-
-                        return (
-                          <button
-                            key={variant.id}
-                            type="button"
-                            onClick={() => {
-                              setSelectedVariantId(variant.id);
-                              if (variant.featuredAsset)
-                                setFeaturedAsset(variant.featuredAsset);
-                            }}
-                            disabled={isOutOfStock}
-                            className={`
-                flex-shrink-0
-                w-36
-                px-3 py-4
-                border-2 rounded-lg
-                text-center
-                bg-white
-                transition-all
-                ${
-                  isSelected
-                    ? 'border-[hsl(var(--secondary))] bg-primary-50'
-                    : 'border-gray-200 hover:border-[hsl(var(--secondary))]'
-                }
-                ${
-                  isOutOfStock
-                    ? 'opacity-40 cursor-not-allowed'
-                    : 'cursor-pointer hover:shadow-md'
-                }
-              `}
-                          >
-                            {variant.featuredAsset && (
-                              <div className="w-16 h-16 mx-auto mb-2 rounded overflow-hidden border border-gray-100">
-                                <img
-                                  src={
-                                    variant.featuredAsset.preview + '?w=80&h=80'
-                                  }
-                                  alt=""
-                                  className="w-full h-full object-cover"
-                                />
-                              </div>
-                            )}
-
-                            {/* VERTICALLY STACKED VARIANT OPTIONS */}
-                            <div className="text-xs font-medium text-gray-900 space-y-1">
-                              {splitVariantOptionsSimple(variantOption).map(
-                                (optionPart, index) => (
-                                  <div key={index} className="leading-tight">
-                                    {optionPart}
-                                  </div>
-                                ),
-                              )}
-                            </div>
-
-                            <div className="text-xs text-gray-600 mt-2">
-                              <Price
-                                priceWithTax={variant.priceWithTax}
-                                currencyCode={variant.currencyCode}
+                      return (
+                        <button
+                          key={variant.id}
+                          type="button"
+                          onClick={() => {
+                            setSelectedVariantId(variant.id);
+                            if (variant.featuredAsset)
+                              setFeaturedAsset(variant.featuredAsset);
+                          }}
+                          disabled={isOutOfStock}
+                          className={`
+              flex-shrink-0
+              w-32
+              px-3 py-4
+              border-2 rounded-lg
+              text-center
+              bg-white
+              transition-all
+              ${
+                isSelected
+                  ? 'border-[hsl(var(--secondary))] bg-primary-50'
+                  : 'border-gray-200 hover:border-[hsl(var(--secondary))]'
+              }
+              ${
+                isOutOfStock
+                  ? 'opacity-40 cursor-not-allowed'
+                  : 'cursor-pointer hover:shadow-md'
+              }
+            `}
+                        >
+                          {variant.featuredAsset && (
+                            <div className="w-14 h-14 mx-auto mb-2 rounded overflow-hidden border border-gray-100">
+                              <img
+                                src={
+                                  variant.featuredAsset.preview + '?w=80&h=80'
+                                }
+                                alt=""
+                                className="w-full h-full object-cover"
                               />
                             </div>
+                          )}
 
-                            {isOutOfStock && (
-                              <div className="text-xs text-red-600 mt-1">
-                                Out of Stock
-                              </div>
+                          {/* VERTICALLY STACKED VARIANT OPTIONS */}
+                          <div className="text-xs font-medium text-gray-900 space-y-1">
+                            {splitVariantOptionsSimple(variantOption).map(
+                              (optionPart, index) => (
+                                <div key={index} className="leading-tight">
+                                  {optionPart}
+                                </div>
+                              ),
                             )}
-                          </button>
-                        );
-                      })}
-                    </div>
+                          </div>
+
+                          <div className="text-xs text-gray-600 mt-2">
+                            <Price
+                              priceWithTax={variant.priceWithTax}
+                              currencyCode={variant.currencyCode}
+                            />
+                          </div>
+
+                          {isOutOfStock && (
+                            <div className="text-xs text-red-600 mt-1">
+                              Out of Stock
+                            </div>
+                          )}
+                        </button>
+                      );
+                    })}
                   </div>
-                </>
-              ) : (
-                <input
-                  type="hidden"
-                  name="variantId"
-                  value={selectedVariantId}
-                ></input>
-              )}
+
+                  {/* Right Arrow - Shows on hover only */}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const container = document.getElementById(
+                        'variant-scroll-container',
+                      );
+                      if (container) {
+                        container.scrollLeft += 200;
+                      }
+                    }}
+                    className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white/95 backdrop-blur-sm border border-[hsl(var(--secondary))] rounded-full p-1.5 shadow-lg hover:bg-white hover:shadow-xl transition-all opacity-0 group-hover:opacity-100 -mr-2"
+                    aria-label="Scroll right"
+                  >
+                    <svg
+                      className="w-4 h-4 text-[hsl(var(--secondary))]"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <input
+                type="hidden"
+                name="variantId"
+                value={selectedVariantId}
+              ></input>
 
               <div className="mt-10 flex flex-col sm:flex-row sm:items-center">
                 <p className="text-3xl text-gray-900 mr-4">
@@ -374,7 +430,7 @@ export default function ProductSlug() {
                     )}
                   </button>
 
-                  <button
+                  {/* <button
                     type="button"
                     className="ml-4 py-3 px-3 rounded-md flex items-center justify-center text-gray-400 hover:bg-gray-100 hover:text-gray-500"
                   >
@@ -385,7 +441,7 @@ export default function ProductSlug() {
                     <span className="sr-only">
                       {t('product.addToFavorites')}
                     </span>
-                  </button>
+                  </button> */}
                 </div>
               </div>
               <div className="mt-2 flex items-center space-x-2">
