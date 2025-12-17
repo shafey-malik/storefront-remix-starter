@@ -202,7 +202,7 @@ export function Header({
               onMouseEnter={() => setActiveDropdown('engagement')}
               onMouseLeave={() => setActiveDropdown(null)}
             >
-              <button className="flex items-center rounded-md bg-[hsl(var(--card))] hover:rounded-b-none space-x-4 px-2 py-1.5 text-gray-700 hover:text-gray-900 font-medium transition-colors">
+              <button className="flex items-center rounded-md hover:rounded-b-none space-x-4 px-2 py-1.5 text-gray-700 hover:text-gray-900 font-medium transition-colors">
                 <span>Engagement Rings</span>
                 <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" />
               </button>
@@ -244,7 +244,7 @@ export function Header({
               onMouseEnter={() => setActiveDropdown('wedding')}
               onMouseLeave={() => setActiveDropdown(null)}
             >
-              <button className="flex items-center rounded-md bg-[hsl(var(--card))] hover:rounded-b-none space-x-4 px-2 py-1.5 text-gray-700 hover:text-gray-900 font-medium transition-colors">
+              <button className="flex items-center rounded-md hover:rounded-b-none space-x-4 px-2 py-1.5 text-gray-700 hover:text-gray-900 font-medium transition-colors">
                 <span>Wedding Rings</span>
                 <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" />
               </button>
