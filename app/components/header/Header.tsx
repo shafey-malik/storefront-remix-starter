@@ -68,9 +68,9 @@ export function Header({
     <header className="w-full bg-[hsl(var(--card))] shadow-[var(--shadow-card)] sticky top-0 z-50">
       {/* Main Header */}
       <div className="">
-        <div className="max-w-7xl mx-auto px-4 py-4">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 py-3 sm:py-4">
           {/* Header main row */}
-          <div className="relative flex items-center justify-between">
+          <div className="relative flex items-center justify-between gap-2 sm:gap-4">
             {/* Left: Mobile Menu & Logo */}
             <div className="flex items-center space-x-1">
               {/* Mobile Menu Button */}
@@ -94,7 +94,7 @@ export function Header({
             </div>
 
             {/* Right: Actions */}
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center gap-2 sm:gap-4 ml-auto sm:ml-0">
               {/* Desktop Search (keep existing logic) */}
               <div className="hidden lg:flex items-center space-x-2">
                 {showSearch ? (
@@ -159,17 +159,17 @@ export function Header({
           </div>
 
           {/* Mobile Search Field - Shown below title in mobile mode */}
-          <div className="md:hidden  mt-1">
+          <div className="md:hidden mt-2 sm:mt-3">
             <form
               onSubmit={handleSearch}
               className="relative flex items-center"
             >
               <Input
                 type="text"
-                placeholder="Search our collections..."
+                placeholder="Search..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="h-10 w-full pl-4 pr-12 py-2 font-luxury-sans text-sm 
+                className="h-9 sm:h-10 w-full pl-3 sm:pl-4 pr-10 py-2 font-luxury-sans text-xs sm:text-sm 
                 border border-[hsl(var(--primary/50%))] rounded-lg
                 focus-visible:ring-2 focus-visible:ring-[hsl(var(--primary)/50%)]
                 focus-visible:ring-offset-2 focus-visible:border-transparent
@@ -179,11 +179,11 @@ export function Header({
                 variant="ghost"
                 size="lg"
                 type="submit"
-                className="absolute right-1 h-7 w-7 p-0 rounded-full
+                className="absolute right-0 h-6 w-6 p-0 rounded-full
             hover:bg-[hsl(var(--primary)/8%)] 
             focus-visible:ring-1 focus-visible:ring-[hsl(var(--primary)/30%)]"
               >
-                <Search className="w-[15px] h-[15px] text-[hsl(var(--secondary))]" />
+                <Search className="w-4 h-4 text-[hsl(var(--secondary))]" />
                 {/* Changed from text-primary to text-secondary */}
               </Button>
             </form>

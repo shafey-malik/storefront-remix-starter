@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Calendar } from 'lucide-react';
 import heroDiamond1 from '~/components/assets/hero-diamond-1.jpg';
 import heroDiamond2 from '~/components/assets/hero-diamond-2.jpg';
@@ -46,7 +46,6 @@ const HeroCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Function to clear any existing timer
   const clearTimer = () => {
     if (timerRef.current) {
       clearInterval(timerRef.current);
@@ -54,15 +53,13 @@ const HeroCarousel = () => {
     }
   };
 
-  // Function to start a new timer
   const startTimer = () => {
-    clearTimer(); // Clear any existing timer first
+    clearTimer();
     timerRef.current = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 10000);
   };
 
-  // Initialize timer on mount and clean up on unmount
   useEffect(() => {
     startTimer();
     return () => clearTimer();
@@ -70,79 +67,88 @@ const HeroCarousel = () => {
 
   const goToSlide = (index: number) => {
     setCurrentSlide(index);
-    startTimer(); // Reset timer when manually changing slides
+    startTimer();
   };
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % slides.length);
-    startTimer(); // Reset timer
+    startTimer();
   };
 
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-    startTimer(); // Reset timer
+    startTimer();
   };
 
   return (
-    <div className="relative h-[80vh] sm:h-[70vh] lg:h-[80vh] overflow-hidden bg-hero-gradient">
+    <div className="relative h-[80vh] sm:h-[70vh] lg:h-[85vh] overflow-hidden bg-[hsl(var(--card))]">
       <AnimatePresence mode="wait">
         <motion.div
           key={currentSlide}
-          initial={{ opacity: 0.5 }}
+          initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.5 }}
           className="absolute inset-0"
         >
-          {/* Stack content vertically on mobile */}
           <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 h-full">
-            {/* Content - takes only needed space on mobile */}
-            <div className="px-4 sm:px-6 lg:px-16 xl:px-24 py-6 sm:py-8 lg:py-0 z-1 flex flex-col justify-center bg-[hsl(var(--background))] lg:bg-transparent">
+            {/* Content */}
+            <div className="px-4 sm:px-8 lg:px-20 xl:px-32 py-8 sm:py-12 lg:py-0 z-10 flex flex-col justify-center bg-[hsl(var(--background))] lg:bg-transparent">
               <motion.div
-                initial={{ y: 20, opacity: 0.1 }}
+                initial={{ y: 30, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.2, duration: 0.5 }}
-                className="max-w-xl mx-auto lg:mx-0 w-full space-y-3 sm:space-y-4"
+                transition={{ delay: 0.2, duration: 0.7 }}
+                className="max-w-2xl space-y-6 sm:space-y-8"
               >
-                <div className="space-y-1 sm:space-y-2">
+                {/* Decorative line */}
+                <motion.div
+                  initial={{ width: 0 }}
+                  animate={{ width: 48 }}
+                  transition={{ delay: 0.3, duration: 0.8 }}
+                  className="h-1 bg-gradient-to-r from-[hsl(var(--gold))] to-[hsl(var(--secondary))]"
+                />
+
+                <div className="space-y-2 sm:space-y-4">
                   <motion.p
-                    initial={{ y: 10, opacity: 0 }}
+                    initial={{ y: 15, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.3 }}
-                    className="text-[hsl(var(--muted-foreground))] font-luxury-sans text-xs sm:text-sm uppercase tracking-widest"
+                    transition={{ delay: 0.35 }}
+                    className="text-[hsl(var(--muted-foreground))] font-luxury-sans text-xs sm:text-sm uppercase tracking-[0.15em] font-light"
                   >
                     {slides[currentSlide].subtitle}
                   </motion.p>
                   <motion.h1
-                    initial={{ y: 0, opacity: 0 }}
+                    initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.2, duration: 1.5 }}
-                    className="font-luxury-serif text-3xl sm:text-4xl lg:text-6xl xl:text-7xl font-bold text-[hsl(var(--primary))] leading-snug sm:leading-tight"
+                    transition={{ delay: 0.25, duration: 0.8 }}
+                    className="font-luxury-serif text-4xl sm:text-5xl lg:text-7xl xl:text-8xl font-light text-[hsl(var(--primary))] leading-tight tracking-tight"
                   >
                     {slides[currentSlide].title}
                   </motion.h1>
                 </div>
+
                 <motion.p
-                  initial={{ y: 10, opacity: 0 }}
+                  initial={{ y: 15, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.5 }}
-                  className="text-[hsl(var(--muted-foreground))] font-luxury-sans text-base sm:text-lg leading-relaxed"
+                  transition={{ delay: 0.4 }}
+                  className="text-[hsl(var(--muted-foreground))] font-luxury-sans text-sm sm:text-base lg:text-lg leading-relaxed max-w-md font-light"
                 >
                   {slides[currentSlide].description}
                 </motion.p>
+
                 <motion.div
-                  initial={{ y: 10, opacity: 0 }}
+                  initial={{ y: 15, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.6 }}
-                  className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 sm:pt-4"
+                  transition={{ delay: 0.5 }}
+                  className="flex flex-col sm:flex-row gap-4 sm:gap-5 pt-4 sm:pt-6"
                 >
-                  <Button className="btn-luxury px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base">
-                    <Calendar className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                  <Button className="btn-luxury px-8 sm:px-10 py-3 sm:py-3.5 text-sm sm:text-base font-light tracking-wide">
+                    <Calendar className="w-4 h-4 mr-2" />
                     Book Consultation
                   </Button>
                   <Button
                     variant="outline"
-                    className="px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base border-[hsl(var(--primary))] text-[hsl(var(--primary))] hover:bg-[hsl(var(--primary))] hover:text-[hsl(var(--secondary))]"
+                    className="px-8 sm:px-10 py-3 sm:py-3.5 text-sm sm:text-base font-light border-[hsl(var(--primary))] text-[hsl(var(--primary))] hover:bg-[hsl(var(--primary))] hover:text-[hsl(var(--secondary))] transition-all duration-500 tracking-wide"
                   >
                     View Collection
                   </Button>
@@ -150,62 +156,65 @@ const HeroCarousel = () => {
               </motion.div>
             </div>
 
-            {/* Image - full width on mobile */}
+            {/* Image */}
             <motion.div
-              initial={{ scale: 0.98, opacity: 0.1 }}
+              initial={{ scale: 1.05, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.2, duration: 2 }}
-              className="relative flex-1 min-h-[40vh] lg:min-h-0 w-full"
+              transition={{ delay: 0.1, duration: 0.8 }}
+              className="relative flex-1 min-h-[45vh] lg:min-h-0 w-full overflow-hidden"
             >
               <img
                 src={slides[currentSlide].image}
                 alt={slides[currentSlide].title}
                 className="w-full h-full object-cover object-center"
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[hsl(var(--background))] lg:bg-gradient-to-r lg:from-[hsl(var(--background))] lg:via-transparent lg:to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[hsl(var(--background))] lg:bg-gradient-to-r lg:from-[hsl(var(--background))] lg:via-[hsl(var(--background))/0.3] lg:to-transparent opacity-60 lg:opacity-100" />
             </motion.div>
           </div>
         </motion.div>
       </AnimatePresence>
 
-      {/* Navigation Arrows - smaller on mobile */}
+      {/* Navigation Arrows */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.8 }}
+        transition={{ delay: 1 }}
+        className="absolute inset-0 pointer-events-none flex items-center justify-between px-4 sm:px-8 lg:px-12"
       >
         <Button
           variant="ghost"
           size="sm"
           onClick={prevSlide}
-          className="absolute left-2 sm:left-6 top-1/2 transform -translate-y-1/2 bg-[hsl(var(--card))] hover:bg-[hsl(var(--surface-luxury))] shadow-[var(--shadow-card))] p-2 sm:p-3 z-1"
+          className="pointer-events-auto bg-white/8 backdrop-blur-md hover:bg-white/15 border border-white/10 rounded-full p-3 sm:p-4 transition-all duration-300 hover:scale-110 group"
         >
-          <ChevronLeft className="w-4 h-4 sm:w-6 sm:h-6" />
+          <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-[hsl(var(--primary))] group-hover:text-[hsl(var(--secondary))]" />
         </Button>
         <Button
           variant="ghost"
           size="sm"
           onClick={nextSlide}
-          className="absolute right-2 sm:right-6 top-1/2 transform -translate-y-1/2 bg-[hsl(var(--card))] hover:bg-[hsl(var(--surface-luxury))] shadow-[var(--shadow-card))] p-2 sm:p-3 z-1"
+          className="pointer-events-auto bg-white/8 backdrop-blur-md hover:bg-white/15 border border-white/10 rounded-full p-3 sm:p-4 transition-all duration-300 hover:scale-110 group"
         >
-          <ChevronRight className="w-4 h-4 sm:w-6 sm:h-6" />
+          <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-[hsl(var(--primary))] group-hover:text-[hsl(var(--secondary))]" />
         </Button>
       </motion.div>
 
+      {/* Slide Indicators */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.8 }}
-        className="absolute left-[47.5%] bottom-4 sm:bottom-8 transform -translate-x-1/2 flex space-x-2 sm:space-x-3"
+        transition={{ delay: 1 }}
+        className="absolute bottom-6 sm:bottom-10 left-[47%] transform -translate-x-1/2 flex space-x-3 sm:space-x-4"
       >
         {slides.map((_, index) => (
-          <button
+          <motion.button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-colors duration-300 ${
+            whileHover={{ scale: 1.2 }}
+            className={`transition-all duration-500 rounded-full ${
               index === currentSlide
-                ? 'bg-[hsl(var(--platinum))]'
-                : 'bg-[hsl(var(--gold))] hover:bg-[hsl(var(--muted))]'
+                ? 'w-8 sm:w-10 h-2 sm:h-2.5 bg-gradient-to-r from-[hsl(var(--rose-gold))] to-[hsl(var(--gold))]'
+                : 'w-2 sm:w-2.5 h-2 sm:h-2.5 bg-white hover:bg-white/40 border border-black/10'
             }`}
           />
         ))}

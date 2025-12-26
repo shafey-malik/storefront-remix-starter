@@ -30,7 +30,7 @@ export function CartTray({
     <Transition.Root show={open} as={Fragment} style={{ zIndex: 200 }}>
       <Dialog
         as="div"
-        className="absolute inset-0 overflow-hidden z-200"
+        className="relative inset-0 overflow-hidden z-200"
         onClose={onClose}
       >
         <div className="absolute inset-0 overflow-hidden">
@@ -43,10 +43,10 @@ export function CartTray({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Dialog.Overlay className="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+            <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity z-0" />
           </Transition.Child>
 
-          <div className="fixed inset-y-0 right-0 pl-10 max-w-full flex">
+          <div className="fixed inset-y-0 right-0 pl-3 sm:pl-10 max-w-full flex z-10">
             <Transition.Child
               as={Fragment}
               enter="transform transition ease-in-out duration-300 sm:duration-300"
@@ -56,28 +56,31 @@ export function CartTray({
               leaveFrom="translate-x-0"
               leaveTo="translate-x-full"
             >
-              <div className="w-screen max-w-md">
+              <div className="w-screen max-w-xs sm:max-w-md">
                 <div className="h-full flex flex-col bg-white shadow-xl overflow-y-scroll">
-                  <div className="flex-1 py-6 overflow-y-auto px-4 sm:px-6">
-                    <div className="flex items-start justify-between">
-                      <Dialog.Title className="text-lg font-medium text-gray-900">
+                  <div className="flex-1 py-4 sm:py-6 overflow-y-auto px-3 sm:px-6">
+                    <div className="flex items-start justify-between gap-2">
+                      <Dialog.Title className="text-base sm:text-lg font-medium text-gray-900">
                         {t('cart.title')}
                       </Dialog.Title>
-                      <div className="ml-3 h-7 flex items-center">
+                      <div className="flex-shrink-0">
                         <button
                           type="button"
-                          className="-m-2 p-2 text-gray-400 hover:text-gray-500"
+                          className="-m-2 p-1 sm:p-2 text-gray-400 hover:text-gray-500"
                           onClick={() => onClose(false)}
                         >
                           <span className="sr-only">
                             {t('common.closePanel')}
                           </span>
-                          <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                          <XMarkIcon
+                            className="h-5 w-5 sm:h-6 sm:w-6"
+                            aria-hidden="true"
+                          />
                         </button>
                       </div>
                     </div>
 
-                    <div className="mt-8">
+                    <div className="mt-6 sm:mt-8">
                       {activeOrder?.totalQuantity ? (
                         <CartContents
                           orderLines={activeOrder?.lines ?? []}
@@ -87,7 +90,7 @@ export function CartTray({
                           adjustOrderLine={adjustOrderLine}
                         ></CartContents>
                       ) : (
-                        <div className="flex items-center justify-center h-48 text-xl text-gray-400">
+                        <div className="flex items-center justify-center h-40 sm:h-48 text-base sm:text-xl text-gray-400">
                           {t('cart.empty')}
                         </div>
                       )}
@@ -95,8 +98,8 @@ export function CartTray({
                   </div>
 
                   {activeOrder?.totalQuantity && editable && (
-                    <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
-                      <div className="flex justify-between text-base font-medium text-gray-900">
+                    <div className="border-t border-gray-200 py-4 sm:py-6 px-3 sm:px-6">
+                      <div className="flex justify-between text-sm sm:text-base font-medium text-gray-900">
                         <p>{t('common.subtotal')}</p>
                         <p>
                           {currencyCode && (
@@ -107,14 +110,14 @@ export function CartTray({
                           )}
                         </p>
                       </div>
-                      <p className="mt-0.5 text-sm text-gray-500">
+                      <p className="mt-0.5 text-xs sm:text-sm text-gray-500">
                         {t('cart.shippingMessage')}
                       </p>
-                      <div className="mt-6">
+                      <div className="mt-4 sm:mt-6">
                         <Link
                           to="/checkout"
                           onClick={() => onClose(false)}
-                          className="flex justify-center items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-secondary bg-primary hover:bg-primary/70"
+                          className="flex justify-center items-center px-4 sm:px-6 py-2 sm:py-3 border border-transparent rounded-md shadow-sm text-sm sm:text-base font-medium text-secondary bg-primary hover:bg-primary/70"
                         >
                           {t('cart.checkout')}
                         </Link>
