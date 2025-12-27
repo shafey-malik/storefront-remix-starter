@@ -121,7 +121,7 @@ const HeroCarousel = () => {
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.25, duration: 0.8 }}
-                    className="font-luxury-serif text-4xl sm:text-5xl lg:text-7xl xl:text-8xl font-light text-[hsl(var(--primary))] leading-tight tracking-tight"
+                    className="font-luxury-serif text-4xl sm:text-5xl lg:text-7xl xl:text-8xl font-light text-[hsl(var(--foreground))] leading-tight tracking-tight"
                   >
                     {slides[currentSlide].title}
                   </motion.h1>
@@ -142,15 +142,15 @@ const HeroCarousel = () => {
                   transition={{ delay: 0.5 }}
                   className="flex flex-col sm:flex-row gap-4 sm:gap-5 pt-4 sm:pt-6"
                 >
-                  <Button className="btn-luxury px-8 sm:px-10 py-3 sm:py-3.5 text-sm sm:text-base font-light tracking-wide">
+                  <Button className="btn-luxury text-[hsl(var(--secondary))] hover:text-[hsl(var(--background))] px-8 sm:px-10 py-3 sm:py-3.5 text-sm sm:text-base font-light tracking-wide ">
                     <Calendar className="w-4 h-4 mr-2" />
-                    Book Consultation
+                    View Collection
                   </Button>
                   <Button
                     variant="outline"
-                    className="px-8 sm:px-10 py-3 sm:py-3.5 text-sm sm:text-base font-light border-[hsl(var(--primary))] text-[hsl(var(--primary))] hover:bg-[hsl(var(--primary))] hover:text-[hsl(var(--secondary))] transition-all duration-500 tracking-wide"
+                    className="bg-[hsl(var(--card))] px-8 sm:px-10 py-3 sm:py-3.5 text-sm sm:text-base font-normal border-[hsl(var(--secondary))] text-[hsl(var(--secondary))] hover:bg-[hsl(var(--primary))] hover:text-[hsl(var(--secondary))] transition-all duration-500 tracking-wide"
                   >
-                    View Collection
+                    Book Consultation
                   </Button>
                 </motion.div>
               </motion.div>

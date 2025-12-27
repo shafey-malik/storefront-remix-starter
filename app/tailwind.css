@@ -12,6 +12,7 @@
     --background: 0 0% 99%;
     --foreground: 240 9% 15%;
 
+    --lead-text: 40 45% 40%;
     /* Premium Card & Surface Colors */
     --card: 0 0% 100%;
     --card-foreground: 240 9% 15%;
@@ -86,44 +87,70 @@
     /* Darker blue */
     --second-foreground: 0 0% 98%;
   }
+}
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+/* Dark theme overrides (apply .dark to <html> or <body>) */
+.dark {
+  --background: 163 80% 9%;
+  --foreground: 0 0% 98%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+  --lead-text: 40 25% 70%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+  --card: 163 6% 8%;
+  --card-foreground: 0 0% 98%;
+  --surface-luxury: 163 80% 10%;
+  --surface-champagne: 163 7% 6%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+  /* Primary uses a deep teal (#06402B) tuned for HSL components */
+  --primary: 163 80% 12%;
+  --primary-foreground: 0 0% 98%;
+  --primary-light: 163 60% 18%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+  --secondary: 40 25% 70%;
+  --secondary-foreground: 0 0% 98%;
+  --secondary-rich: 40 45% 55%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+  --accent: 15 25% 88%;
+  --accent-foreground: 0 0% 98%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+  --platinum: 220 10% 18%;
+  --platinum-dark: 220 10% 12%;
+  --gold: 40 60% 45%;
+  --rose-gold: 15 40% 18%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+  --muted: 220 10% 10%;
+  --muted-foreground: 40 25% 40%;
+  --border: 220 8% 18%;
+  --input: 220 8% 14%;
+  --ring: 163 80% 30%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
+  --gradient-luxury: linear-gradient(135deg, hsl(163 8% 8%), hsl(163 6% 6%));
+  --gradient-champagne: linear-gradient(135deg, hsl(163 10% 10%), hsl(163 8% 8%));
+  --gradient-platinum: linear-gradient(135deg, hsl(220 10% 12%), hsl(220 8% 9%));
+  --gradient-hero: linear-gradient(135deg, hsl(163 8% 8%), hsl(0 0% 4%));
+
+  --shadow-luxury: 0 6px 24px -4px hsl(163 80% 12% / 0.6);
+  --shadow-elegant: 0 10px 36px -8px hsl(163 80% 12% / 0.6);
+  --shadow-premium: 0 30px 80px -24px hsl(163 80% 12% / 0.7);
+  --shadow-card: 0 4px 12px -3px hsl(163 80% 12% / 0.6);
+
+  --transition-elegant: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  --radius: 0.75rem;
+
+  --sidebar-background: 163 6% 6%;
+  --sidebar-foreground: 0 0% 98%;
+  --sidebar-primary: 163 80% 12%;
+  --sidebar-primary-foreground: 0 0% 98%;
+  --sidebar-accent: 163 7% 7%;
+  --sidebar-accent-foreground: 0 0% 98%;
+  --sidebar-border: 163 8% 8%;
+  --sidebar-ring: 163 80% 40%;
+
+  --second: 210 90% 20%;
+  --second-rich: 210 90% 30%;
+  --second-foreground: 0 0% 98%;
 }
 
 @layer base {
@@ -168,7 +195,7 @@
   }
 
   .btn-luxury {
-    @apply relative overflow-hidden bg-gradient-to-r from-[hsl(var(--secondary))] to-[hsl(var(--secondary))] text-[hsl(var(--secondary-foreground))] px-8 py-3 rounded-lg shadow-[0_4px_15px_hsl(var(--secondary)/0.4)] transition-all duration-500 transition-luxury hover:bg-gradient-to-r hover:from-[hsl(var(--second))] hover:to-[hsl(var(--second-rich))] hover:shadow-[0_6px_20px_hsl(var(--second)/0.6)] active:brightness-90;
+    @apply relative overflow-hidden bg-[hsl(var(--primary))] text-[hsl(var(--lead-text))] px-8 py-3 rounded-lg transition-all duration-500 transition-luxury hover:bg-gradient-to-r hover:from-[hsl(var(--lead-text))] hover:to-[hsl(var(--lead-text))] hover:text-[hsl(var(--foreground))] active:brightness-90;
 
     /* Subtle shimmer effect */
     &::after {

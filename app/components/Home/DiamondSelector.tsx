@@ -55,7 +55,7 @@ const DiamondSelector = () => {
   )?.centralImg;
 
   return (
-    <section className="py-24 bg-gradient-to-br from-[hsl(var(--surface-luxury))] via-slate-50 to-[hsl(var(--surface-luxury))] relative overflow-hidden">
+    <section className="py-24 bg-[hsl(var(--background))] relative overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-amber-100 to-transparent rounded-full blur-3xl opacity-20 -translate-x-1/2 -translate-y-1/2 animate-pulse"></div>
       <div
@@ -74,8 +74,9 @@ const DiamondSelector = () => {
               <div className="h-1 w-12 bg-gradient-to-l from-transparent to-[hsl(var(--primary))]"></div>
             </div>
           </div>
-          <h2 className="font-luxury-serif text-5xl lg:text-6xl font-bold bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] bg-clip-text text-transparent">
-            Select Your Diamond Cut
+          <h2 className="font-luxury-serif text-5xl lg:text-6xl font-bold bg-[hsl(var(--secondary))] bg-clip-text text-transparent">
+            <span className="text-[hsl(var(--primary))]">Select Your </span>{' '}
+            Diamond <span className="text-[hsl(var(--primary))]">Cut</span>
           </h2>
           <p className="text-[hsl(var(--muted-foreground))] font-luxury-sans text-lg max-w-2xl mx-auto leading-relaxed">
             Each diamond cut reflects light differently, creating its own unique
@@ -202,7 +203,7 @@ const DiamondSelector = () => {
                   {diamondTypes.find((d) => d.id === selectedDiamond)?.name} Cut
                 </h3>
               </div>
-              <div className="h-1.5 w-24 bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] rounded-full"></div>
+              <div className="h-1.5 w-24 bg-[hsl(var(--secondary))] rounded-full"></div>
             </div>
 
             <div className="space-y-6 text-[hsl(var(--muted-foreground))] font-luxury-sans">
@@ -215,15 +216,15 @@ const DiamondSelector = () => {
                   </p>
                   <ul className="space-y-3 text-sm">
                     <li className="flex items-center gap-3 group">
-                      <span className="w-2 h-2 rounded-full bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] group-hover:scale-150 transition-transform duration-300"></span>
+                      <span className="w-2 h-2 rounded-full bg-[hsl(var(--secondary))] group-hover:scale-150 transition-transform duration-300"></span>
                       <span>Maximum brilliance and sparkle</span>
                     </li>
                     <li className="flex items-center gap-3 group">
-                      <span className="w-2 h-2 rounded-full bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] group-hover:scale-150 transition-transform duration-300"></span>
+                      <span className="w-2 h-2 rounded-full bg-[hsl(var(--secondary))] group-hover:scale-150 transition-transform duration-300"></span>
                       <span>Timeless and classic appeal</span>
                     </li>
                     <li className="flex items-center gap-3 group">
-                      <span className="w-2 h-2 rounded-full bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] group-hover:scale-150 transition-transform duration-300"></span>
+                      <span className="w-2 h-2 rounded-full bg-[hsl(var(--secondary))] group-hover:scale-150 transition-transform duration-300"></span>
                       <span>Excellent for all ring styles</span>
                     </li>
                   </ul>
@@ -239,15 +240,15 @@ const DiamondSelector = () => {
                   </p>
                   <ul className="space-y-3 text-sm">
                     <li className="flex items-center gap-3 group">
-                      <span className="w-2 h-2 rounded-full bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] group-hover:scale-150 transition-transform duration-300"></span>
+                      <span className="w-2 h-2 rounded-full bg-[hsl(var(--secondary))] group-hover:scale-150 transition-transform duration-300"></span>
                       <span>Modern and sophisticated</span>
                     </li>
                     <li className="flex items-center gap-3 group">
-                      <span className="w-2 h-2 rounded-full bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] group-hover:scale-150 transition-transform duration-300"></span>
+                      <span className="w-2 h-2 rounded-full bg-[hsl(var(--secondary))] group-hover:scale-150 transition-transform duration-300"></span>
                       <span>Brilliant sparkle</span>
                     </li>
                     <li className="flex items-center gap-3 group">
-                      <span className="w-2 h-2 rounded-full bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] group-hover:scale-150 transition-transform duration-300"></span>
+                      <span className="w-2 h-2 rounded-full bg-[hsl(var(--secondary))] group-hover:scale-150 transition-transform duration-300"></span>
                       <span>Great value proposition</span>
                     </li>
                   </ul>
@@ -263,15 +264,15 @@ const DiamondSelector = () => {
                   </p>
                   <ul className="space-y-3 text-sm">
                     <li className="flex items-center gap-3 group">
-                      <span className="w-2 h-2 rounded-full bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] group-hover:scale-150 transition-transform duration-300"></span>
+                      <span className="w-2 h-2 rounded-full bg-[hsl(var(--secondary))] group-hover:scale-150 transition-transform duration-300"></span>
                       <span>Elegant hall-of-mirrors effect</span>
                     </li>
                     <li className="flex items-center gap-3 group">
-                      <span className="w-2 h-2 rounded-full bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] group-hover:scale-150 transition-transform duration-300"></span>
+                      <span className="w-2 h-2 rounded-full bg-[hsl(var(--secondary))] group-hover:scale-150 transition-transform duration-300"></span>
                       <span>Vintage-inspired glamour</span>
                     </li>
                     <li className="flex items-center gap-3 group">
-                      <span className="w-2 h-2 rounded-full bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] group-hover:scale-150 transition-transform duration-300"></span>
+                      <span className="w-2 h-2 rounded-full bg-[hsl(var(--secondary))] group-hover:scale-150 transition-transform duration-300"></span>
                       <span>Emphasizes diamond clarity</span>
                     </li>
                   </ul>
@@ -287,15 +288,15 @@ const DiamondSelector = () => {
                   </p>
                   <ul className="space-y-3 text-sm">
                     <li className="flex items-center gap-3 group">
-                      <span className="w-2 h-2 rounded-full bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] group-hover:scale-150 transition-transform duration-300"></span>
+                      <span className="w-2 h-2 rounded-full bg-[hsl(var(--secondary))] group-hover:scale-150 transition-transform duration-300"></span>
                       <span>Elongated elegant appearance</span>
                     </li>
                     <li className="flex items-center gap-3 group">
-                      <span className="w-2 h-2 rounded-full bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] group-hover:scale-150 transition-transform duration-300"></span>
+                      <span className="w-2 h-2 rounded-full bg-[hsl(var(--secondary))] group-hover:scale-150 transition-transform duration-300"></span>
                       <span>Creates illusion of larger size</span>
                     </li>
                     <li className="flex items-center gap-3 group">
-                      <span className="w-2 h-2 rounded-full bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] group-hover:scale-150 transition-transform duration-300"></span>
+                      <span className="w-2 h-2 rounded-full bg-[hsl(var(--secondary))] group-hover:scale-150 transition-transform duration-300"></span>
                       <span>Flattering on all hand types</span>
                     </li>
                   </ul>
@@ -311,15 +312,15 @@ const DiamondSelector = () => {
                   </p>
                   <ul className="space-y-3 text-sm">
                     <li className="flex items-center gap-3 group">
-                      <span className="w-2 h-2 rounded-full bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] group-hover:scale-150 transition-transform duration-300"></span>
+                      <span className="w-2 h-2 rounded-full bg-[hsl(var(--secondary))] group-hover:scale-150 transition-transform duration-300"></span>
                       <span>Romantic vintage appeal</span>
                     </li>
                     <li className="flex items-center gap-3 group">
-                      <span className="w-2 h-2 rounded-full bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] group-hover:scale-150 transition-transform duration-300"></span>
+                      <span className="w-2 h-2 rounded-full bg-[hsl(var(--secondary))] group-hover:scale-150 transition-transform duration-300"></span>
                       <span>Soft, pillow-like appearance</span>
                     </li>
                     <li className="flex items-center gap-3 group">
-                      <span className="w-2 h-2 rounded-full bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] group-hover:scale-150 transition-transform duration-300"></span>
+                      <span className="w-2 h-2 rounded-full bg-[hsl(var(--secondary))] group-hover:scale-150 transition-transform duration-300"></span>
                       <span>Excellent fire and brilliance</span>
                     </li>
                   </ul>
@@ -334,15 +335,15 @@ const DiamondSelector = () => {
                   </p>
                   <ul className="space-y-3 text-sm">
                     <li className="flex items-center gap-3 group">
-                      <span className="w-2 h-2 rounded-full bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] group-hover:scale-150 transition-transform duration-300"></span>
+                      <span className="w-2 h-2 rounded-full bg-[hsl(var(--secondary))] group-hover:scale-150 transition-transform duration-300"></span>
                       <span>Unique teardrop silhouette</span>
                     </li>
                     <li className="flex items-center gap-3 group">
-                      <span className="w-2 h-2 rounded-full bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] group-hover:scale-150 transition-transform duration-300"></span>
+                      <span className="w-2 h-2 rounded-full bg-[hsl(var(--secondary))] group-hover:scale-150 transition-transform duration-300"></span>
                       <span>Elongates the finger</span>
                     </li>
                     <li className="flex items-center gap-3 group">
-                      <span className="w-2 h-2 rounded-full bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] group-hover:scale-150 transition-transform duration-300"></span>
+                      <span className="w-2 h-2 rounded-full bg-[hsl(var(--secondary))] group-hover:scale-150 transition-transform duration-300"></span>
                       <span>Distinctive and eye-catching</span>
                     </li>
                   </ul>

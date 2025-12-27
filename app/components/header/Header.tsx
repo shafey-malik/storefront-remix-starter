@@ -7,8 +7,10 @@ import {
   Menu,
   X,
   ChevronDown,
+  Moon,
+  Sun,
 } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRootLoader } from '~/utils/use-root-loader';
 import { useScrollingUp } from '~/utils/use-scrolling-up';
 import { classNames } from '~/utils/class-names';
@@ -33,12 +35,51 @@ export function Header({
   const [showSearch, setShowSearch] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [isDark, setIsDark] = useState<boolean>(false);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Searching for:', searchQuery);
     setShowSearch(false);
     setSearchQuery('');
+  };
+
+  // Theme handling: read persisted theme or system preference
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem('theme');
+      if (stored === 'dark') {
+        document.documentElement.classList.add('dark');
+        setIsDark(true);
+      } else if (stored === 'light') {
+        document.documentElement.classList.remove('dark');
+        setIsDark(false);
+      } else if (
+        window.matchMedia &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches
+      ) {
+        document.documentElement.classList.add('dark');
+        setIsDark(true);
+      }
+    } catch (e) {
+      // ignore
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    try {
+      if (isDark) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+        setIsDark(false);
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+        setIsDark(true);
+      }
+    } catch (e) {
+      // ignore
+    }
   };
 
   // Diamond shop specific categories
@@ -76,9 +117,9 @@ export function Header({
               {/* Mobile Menu Button */}
               <button
                 onClick={() => setIsMobileMenuOpen(true)}
-                className="lg:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                className="lg:hidden p-2 hover:text-[hsl(var(--foreground))] rounded-lg transition-colors"
               >
-                <Menu className="w-6 h-6 text-[hsl(var(--secondary))]" />
+                <Menu className="w-6 h-6 text-[hsl(var(--lead-text))]" />
               </button>
 
               {/* Logo — centered on desktop, inline on mobile */}
@@ -87,7 +128,7 @@ export function Header({
                 to="/"
                 className="absolute left-1/2 transform -translate-x-1/2 flex items-center space-x-3"
               >
-                <h1 className="text-nowrap font-luxury-serif text-3xl sm:text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
+                <h1 className="text-nowrap font-luxury-serif text-3xl sm:text-3xl md:text-4xl font-bold text-[hsl(var(--foreground))] leading-tight">
                   Ever & Always
                 </h1>
               </Link>
@@ -112,45 +153,58 @@ export function Header({
                   //   />
                   //   <button
                   //     type="submit"
-                  //     className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                  //     className="p-2 hover:text-[hsl(var(--foreground))] rounded-lg transition-colors"
                   //   >
                   //     <Search className="w-5 h-5 text-[hsl(var(--secondary))]" />
                   //   </button>
                   //   <button
                   //     type="button"
                   //     onClick={() => setShowSearch(false)}
-                  //     className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                  //     className="p-2 hover:text-[hsl(var(--foreground))] rounded-lg transition-colors"
                   //   >
-                  //     <X className="w-5 h-5 text-gray-700" />
+                  //     <X className="w-5 h-5 text-[hsl(var(--lead-text))]" />
                   //   </button>
                   // </form>
                   <SearchBar />
                 ) : (
                   <button
                     onClick={() => setShowSearch(true)}
-                    className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                    className="p-2 hover:text-[hsl(var(--foreground))] rounded-lg transition-colors"
                   >
-                    <Search className="w-5 h-5 text-[hsl(var(--secondary))]" />
+                    <Search className="w-5 h-5 text-[hsl(var(--lead-text))]" />
                   </button>
                 )}
               </div>
 
+              {/* Theme Toggle */}
+              <button
+                onClick={toggleTheme}
+                aria-label="Toggle theme"
+                className="p-2 hover:text-[hsl(var(--foreground))] rounded-lg transition-colors"
+              >
+                {isDark ? (
+                  <Sun className="w-5 h-5 text-[hsl(var(--lead-text))]" />
+                ) : (
+                  <Moon className="w-5 h-5 text-[hsl(var(--lead-text))]" />
+                )}
+              </button>
+
               {/* Profile */}
               <Link
                 to={isSignedIn ? '/account' : '/sign-in'}
-                className=" hover:bg-gray-100 rounded-lg transition-colors"
+                className=" hover:text-[hsl(var(--foreground))] rounded-lg transition-colors"
               >
-                <User className="w-5 h-5 text-[hsl(var(--secondary))]" />
+                <User className="w-5 h-5 text-[hsl(var(--lead-text))]" />
               </Link>
 
               {/* Cart */}
               <button
                 onClick={onCartIconClick}
-                className=" hover:bg-gray-100 rounded-lg transition-colors relative"
+                className=" hover:text-[hsl(var(--foreground))] rounded-lg transition-colors relative"
               >
-                <ShoppingBag className="w-5 h-5 text-[hsl(var(--secondary))]" />
+                <ShoppingBag className="w-5 h-5 text-[hsl(var(--lead-text))]" />
                 {cartQuantity > 0 && (
-                  <div className="absolute -top-1 -right-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-medium">
+                  <div className="absolute -top-1 -right-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-normal">
                     {cartQuantity}
                   </div>
                 )}
@@ -183,7 +237,7 @@ export function Header({
             hover:bg-[hsl(var(--primary)/8%)] 
             focus-visible:ring-1 focus-visible:ring-[hsl(var(--primary)/30%)]"
               >
-                <Search className="w-4 h-4 text-[hsl(var(--secondary))]" />
+                <Search className="w-4 h-4 text-[hsl(var(--lead-text))]" />
                 {/* Changed from text-primary to text-secondary */}
               </Button>
             </form>
@@ -202,18 +256,18 @@ export function Header({
               onMouseEnter={() => setActiveDropdown('engagement')}
               onMouseLeave={() => setActiveDropdown(null)}
             >
-              <button className="flex items-center rounded-md hover:rounded-b-none space-x-4 px-2 py-1.5 text-gray-700 hover:text-gray-900 font-medium transition-colors">
+              <button className="flex items-center rounded-md hover:rounded-b-none space-x-4 px-2 py-1.5 text-[hsl(var(--lead-text))] hover:text-[hsl(var(--foreground))] font-normal transition-colors">
                 <span>Engagement Rings</span>
                 <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" />
               </button>
 
               {activeDropdown === 'engagement' && (
-                <div className="absolute top-full left-0 w-96 bg-[hsl(var(--card))] shadow-2xl border border-gray-200 rounded-lg z-50 rounded-tl-none">
+                <div className="absolute top-full left-0 w-96 bg-[hsl(var(--card))] shadow-2xl rounded-lg z-50 rounded-tl-none">
                   <div className="p-6 grid grid-cols-2 gap-6">
                     {Object.entries(engagementCategories).map(
                       ([category, items]) => (
                         <div key={category}>
-                          <h3 className="font-semibold text-gray-900 mb-3 text-sm uppercase tracking-wide">
+                          <h3 className="font-semibold text-[hsl(var(--lead-text))] mb-3 text-sm uppercase tracking-wide">
                             {category}
                           </h3>
                           <div className="space-y-2">
@@ -223,7 +277,7 @@ export function Header({
                                 to={`/collections/engagement-${item
                                   .toLowerCase()
                                   .replace(' ', '-')}`}
-                                className="block text-sm text-gray-600 hover:text-gray-900 py-1 transition-colors"
+                                className="block text-sm text-[hsl(var(--foreground))] hover:text-[hsl(var(--lead-text))] py-1 transition-colors"
                                 onClick={() => setActiveDropdown(null)}
                               >
                                 {item}
@@ -244,18 +298,18 @@ export function Header({
               onMouseEnter={() => setActiveDropdown('wedding')}
               onMouseLeave={() => setActiveDropdown(null)}
             >
-              <button className="flex items-center rounded-md hover:rounded-b-none space-x-4 px-2 py-1.5 text-gray-700 hover:text-gray-900 font-medium transition-colors">
+              <button className="flex items-center rounded-md hover:rounded-b-none space-x-4 px-2 py-1.5 text-[hsl(var(--lead-text))] hover:text-[hsl(var(--foreground))] font-normal transition-colors">
                 <span>Wedding Rings</span>
                 <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" />
               </button>
 
               {activeDropdown === 'wedding' && (
-                <div className="absolute top-full left-0 w-96 bg-[hsl(var(--card))] shadow-2xl border border-gray-200 rounded-lg z-50 rounded-tl-none">
+                <div className="absolute top-full left-0 w-96 bg-[hsl(var(--card))] shadow-2xl border rounded-lg z-50 rounded-tl-none">
                   <div className="p-6 grid grid-cols-2 gap-6">
                     {Object.entries(weddingCategories).map(
                       ([category, items]) => (
                         <div key={category}>
-                          <h3 className="font-semibold text-gray-900 mb-3 text-sm uppercase tracking-wide">
+                          <h3 className="font-semibold text-[hsl(var(--lead-text))] mb-3 text-sm uppercase tracking-wide">
                             {category}
                           </h3>
                           <div className="space-y-2">
@@ -265,7 +319,7 @@ export function Header({
                                 to={`/collections/wedding-${item
                                   .toLowerCase()
                                   .replace(' ', '-')}`}
-                                className="block text-sm text-gray-600 hover:text-gray-900 py-1 transition-colors"
+                                className="block text-sm text-[hsl(var(--foreground))] hover:text-[hsl(var(--lead-text))] py-1 transition-colors"
                                 onClick={() => setActiveDropdown(null)}
                               >
                                 {item}
@@ -286,7 +340,7 @@ export function Header({
                 key={collection.id}
                 to={'/collections/' + collection.slug}
                 prefetch="intent"
-                className="py-4 text-gray-700 hover:text-gray-900 font-medium transition-colors"
+                className="py-4 text-[hsl(var(--lead-text))] hover:text-gray-900 font-normal transition-colors"
               >
                 {collection.name}
               </Link>
@@ -295,7 +349,7 @@ export function Header({
             {/* Custom Jewelry */}
             <Link
               to="/custom"
-              className="py-4 text-gray-700 hover:text-gray-900 font-medium transition-colors"
+              className="py-4 text-[hsl(var(--lead-text))] hover:text-gray-900 font-normal transition-colors"
             >
               Custom Jewelry
             </Link>
@@ -303,7 +357,7 @@ export function Header({
             {/* About */}
             <Link
               to="/about"
-              className="py-4 text-gray-700 hover:text-gray-900 font-medium transition-colors"
+              className="py-4 text-[hsl(var(--lead-text))] hover:text-gray-900 font-normal transition-colors"
             >
               About Us
             </Link>
@@ -330,15 +384,15 @@ export function Header({
                   {/* <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center">
                     <span className="text-white font-bold">E&A</span>
                   </div> */}
-                  <h1 className="font-luxury-serif text-2xl font-bold text-gray-900 leading-tight">
+                  <h1 className="font-luxury-serif text-2xl font-bold text-[hsl(var(--foreground))] leading-tight">
                     Ever & Always
                   </h1>
                 </Link>
                 <button
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className=" hover:bg-gray-100 rounded-lg"
+                  className=" hover:text-[hsl(var(--foreground))] rounded-lg"
                 >
-                  <X className="w-5 h-5 text-gray-700" />
+                  <X className="w-5 h-5 text-[hsl(var(--lead-text))]" />
                 </button>
               </div>
             </div>
@@ -365,11 +419,11 @@ export function Header({
 
                 {/* Engagement Rings Mobile */}
                 <div className="border rounded-lg">
-                  <div className="px-4 py-3 font-medium text-gray-900">
+                  <div className="px-4 py-3 font-normal text-gray-900">
                     Engagement Rings
                   </div>
                   <div className="px-4 pb-3 space-y-2">
-                    <div className="text-sm text-gray-600 font-medium">
+                    <div className="text-sm text-gray-600 font-normal">
                       By Shape
                     </div>
                     <div className="grid grid-cols-2 gap-1">
@@ -393,11 +447,11 @@ export function Header({
 
                 {/* Wedding Rings Mobile */}
                 <div className="border rounded-lg">
-                  <div className="px-4 py-3 font-medium text-gray-900">
+                  <div className="px-4 py-3 font-normal text-gray-900">
                     Wedding Rings
                   </div>
                   <div className="px-4 pb-3 space-y-2">
-                    <div className="text-sm text-gray-600 font-medium">
+                    <div className="text-sm text-gray-600 font-normal">
                       Women's
                     </div>
                     <div className="grid grid-cols-2 gap-1">
@@ -424,7 +478,7 @@ export function Header({
                     to={'/collections/' + collection.slug}
                     prefetch="intent"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="block py-3 px-4 text-gray-700 hover:bg-gray-100 rounded-lg font-medium transition-colors"
+                    className="block py-3 px-4 text-[hsl(var(--lead-text))] hover:text-[hsl(var(--foreground))] rounded-lg font-normal transition-colors"
                   >
                     {collection.name}
                   </Link>
@@ -433,7 +487,7 @@ export function Header({
                 <Link
                   to="/custom"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block py-3 px-4 text-gray-700 hover:bg-gray-100 rounded-lg font-medium transition-colors"
+                  className="block py-3 px-4 text-[hsl(var(--lead-text))] hover:text-[hsl(var(--foreground))] rounded-lg font-normal transition-colors"
                 >
                   Custom Jewelry
                 </Link>
@@ -441,7 +495,7 @@ export function Header({
                 <Link
                   to="/about"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block py-3 px-4 text-gray-700 hover:bg-gray-100 rounded-lg font-medium transition-colors"
+                  className="block py-3 px-4 text-[hsl(var(--lead-text))] hover:text-[hsl(var(--foreground))] rounded-lg font-normal transition-colors"
                 >
                   About Us
                 </Link>
