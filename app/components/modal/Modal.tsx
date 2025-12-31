@@ -36,7 +36,7 @@ const Modal: React.FC<PropsWithChildren<ModalProps>> & {
         </Transition.Child>
 
         <div className="fixed inset-0 overflow-y-auto">
-          <div className="flex min-h-full items-center justify-center p-4 text-center">
+          <div className="flex min-h-full items-center justify-center p-2 sm:p-4 text-center">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -48,11 +48,11 @@ const Modal: React.FC<PropsWithChildren<ModalProps>> & {
             >
               <Dialog.Panel
                 className={clsx(
-                  'flex flex-col justify-start w-full h-full overflow-auto transform bg-white p-10 text-left align-middle shadow-xl transition-all',
+                  'flex flex-col justify-start w-full max-h-[90vh] overflow-auto transform bg-white p-4 sm:p-6 lg:p-10 text-left align-middle shadow-xl transition-all rounded-lg',
                   {
-                    'max-w-md': size === 'small',
-                    'max-w-xl': size === 'medium',
-                    'max-w-3xl': size === 'large',
+                    'sm:max-w-md': size === 'small',
+                    'sm:max-w-xl': size === 'medium',
+                    'sm:max-w-3xl': size === 'large',
                   },
                 )}
               >
@@ -70,12 +70,12 @@ const Title: React.FC<PropsWithChildren> = ({ children }) => {
   const { close } = useModal();
 
   return (
-    <Dialog.Title className="flex items-center justify-between">
-      <div className="text-large-semi">{children}</div>
-      <div>
-        <button onClick={close} type="button">
+    <Dialog.Title className="flex items-center justify-between gap-2 sm:gap-4">
+      <div className="text-base sm:text-lg font-semibold">{children}</div>
+      <div className="flex-shrink-0">
+        <button onClick={close} type="button" className="p-1">
           {/* <X size={20} /> */}
-          <XMarkIcon className="w-6 h-6"></XMarkIcon>
+          <XMarkIcon className="w-5 h-5 sm:w-6 sm:h-6"></XMarkIcon>
         </button>
       </div>
     </Dialog.Title>
@@ -84,7 +84,7 @@ const Title: React.FC<PropsWithChildren> = ({ children }) => {
 
 const Description: React.FC<PropsWithChildren> = ({ children }) => {
   return (
-    <Dialog.Description className="flex text-small-regular text-gray-700 items-center justify-center pt-2 pb-4 h-full">
+    <Dialog.Description className="flex text-xs sm:text-sm text-gray-700 items-center justify-center pt-2 pb-3 sm:pb-4 h-full">
       {children}
     </Dialog.Description>
   );
@@ -96,7 +96,9 @@ const Body: React.FC<PropsWithChildren> = ({ children }) => {
 
 const Footer: React.FC<PropsWithChildren> = ({ children }) => {
   return (
-    <div className="flex items-center justify-end gap-x-4">{children}</div>
+    <div className="flex items-center justify-end gap-2 sm:gap-4 mt-4 sm:mt-6">
+      {children}
+    </div>
   );
 };
 
