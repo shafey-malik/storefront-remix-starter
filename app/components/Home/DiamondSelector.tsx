@@ -55,11 +55,11 @@ const DiamondSelector = () => {
   )?.centralImg;
 
   return (
-    <section className="py-24 bg-[hsl(var(--background))] relative overflow-hidden">
+    <section className="py-24 bg-[hsl(var(--card))] relative overflow-hidden">
       {/* Animated background elements */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-amber-100 to-transparent rounded-full blur-3xl opacity-20 -translate-x-1/2 -translate-y-1/2 animate-pulse"></div>
+      <div className="absolute top-0 left-0 w-96 h-96 rounded-full blur-3xl opacity-20 -translate-x-1/2 -translate-y-1/2 animate-pulse"></div>
       <div
-        className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-blue-100 to-transparent rounded-full blur-3xl opacity-20 translate-x-1/2 translate-y-1/2 animate-pulse"
+        className="absolute bottom-0 right-0 w-96 h-96 rounded-full blur-3xl opacity-20 translate-x-1/2 translate-y-1/2 animate-pulse"
         style={{ animationDelay: '1s' }}
       ></div>
 
@@ -75,8 +75,8 @@ const DiamondSelector = () => {
             </div>
           </div>
           <h2 className="font-luxury-serif text-5xl lg:text-6xl font-bold bg-[hsl(var(--secondary))] bg-clip-text text-transparent">
-            <span className="text-[hsl(var(--primary))]">Select Your </span>{' '}
-            Diamond <span className="text-[hsl(var(--primary))]">Cut</span>
+            <span className="text-[hsl(var(--foreground))]">Select Your </span>{' '}
+            Diamond <span className="text-[hsl(var(--foreground))]">Cut</span>
           </h2>
           <p className="text-[hsl(var(--muted-foreground))] font-luxury-sans text-lg max-w-2xl mx-auto leading-relaxed">
             Each diamond cut reflects light differently, creating its own unique
@@ -181,8 +181,8 @@ const DiamondSelector = () => {
                   {/* Selection ring indicator */}
                   {isSelected && (
                     <div
-                      className="absolute inset-0 rounded-full border-2 border-white animate-pulse"
-                      style={{ animationDuration: '2s' }}
+                      className="absolute inset-0 rounded-full border-2 border-white bg-[hsl(var(--lead-text))] animate-pulse"
+                      style={{ animationDuration: '4s' }}
                     ></div>
                   )}
                 </button>
