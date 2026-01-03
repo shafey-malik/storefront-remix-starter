@@ -133,47 +133,63 @@ const TestimonialsSection = () => {
         </div>
 
         {/* Bestsellers */}
-        <div>
-          <div className="text-center space-y-4 mb-12">
-            <h2 className="font-luxury-serif text-4xl lg:text-5xl font-bold text-[hsl(var(--primary))]">
+        <div className="mt-32">
+          <div className="text-center space-y-6 mb-16">
+            <div className="inline-block">
+              <span className="text-[hsl(var(--secondary))] font-luxury-sans text-sm tracking-widest uppercase font-semibold">
+                Premium Collection
+              </span>
+            </div>
+            <h2 className="font-luxury-serif text-5xl lg:text-6xl font-bold text-[hsl(var(--foreground))] leading-tight">
               Designer's Choice Collection
             </h2>
-            <p className="text-[hsl(var(--muted-foreground))] font-luxury-sans text-lg max-w-2xl mx-auto">
-              Our most sought-after designs, handpicked by our master jewelers.
+            <p className="text-[hsl(var(--muted-foreground))] font-luxury-sans text-lg max-w-2xl mx-auto leading-relaxed">
+              Our most sought-after designs, handpicked by our master jewelers
+              for their exceptional craftsmanship.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {bestsellers.map((ring) => (
               <Card
                 key={ring.id}
-                className="card-luxury overflow-hidden group cursor-pointer transition-all duration-300 hover:shadow-2xl dark:bg-gradient-to-br dark:from-slate-800 dark:to-slate-900 dark:border dark:border-slate-700"
+                className="group card-luxury overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 dark:bg-[hsl(var(--card))]"
               >
-                <div className="relative overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 dark:from-slate-700 dark:to-slate-800">
+                <div className="relative overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 dark:from-slate-700 dark:to-slate-800 h-72">
                   <img
                     src={ring.image}
                     alt={ring.name}
-                    className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-125"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute top-4 right-4 bg-[hsl(var(--secondary))] text-black px-4 py-2 rounded-full font-luxury-sans font-bold text-sm opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                    Bestseller
+                  </div>
                 </div>
 
-                <div className="p-6 space-y-3">
-                  <div className="flex justify-between items-start gap-4">
-                    <h3 className="font-luxury-serif text-xl font-semibold text-[hsl(var(--primary))] dark:text-white">
+                <div className="p-8 space-y-5">
+                  <div className="space-y-2">
+                    <h3 className="font-luxury-serif text-2xl font-semibold text-[hsl(var(--primary))] dark:text-white group-hover:text-[hsl(var(--secondary))] transition-colors">
                       {ring.name}
                     </h3>
-                    <span className="font-luxury-sans font-bold text-[hsl(var(--secondary-rich))] dark:text-yellow-400 whitespace-nowrap">
-                      {ring.price}
-                    </span>
+                    <div className="h-1 w-12 bg-gradient-to-r from-[hsl(var(--secondary))] to-transparent rounded-full"></div>
                   </div>
 
-                  <p className="text-[hsl(var(--muted-foreground))] font-luxury-sans text-sm dark:text-gray-300">
+                  <p className="text-[hsl(var(--muted-foreground))] font-luxury-sans text-sm dark:text-gray-300 leading-relaxed">
                     {ring.description}
                   </p>
 
+                  <div className="flex items-center justify-between pt-2">
+                    <span className="font-luxury-sans font-bold text-xl text-[hsl(var(--lead-text))]">
+                      {ring.price}
+                    </span>
+                    <div className="text-xs text-[hsl(var(--muted-foreground))] dark:text-gray-400">
+                      In stock
+                    </div>
+                  </div>
+
                   <div className="pt-4">
-                    <button className="w-full text-[hsl(var(--primary))] dark:text-white font-luxury-sans text-sm font-medium hover:text-[hsl(var(--secondary-rich))] dark:hover:text-yellow-400 transition-colors hover:underline">
+                    <button className="btn-luxury w-full text-sm font-semibold py-3 rounded-lg transition-all duration-300 hover:shadow-lg hover:-translate-y-1 active:translate-y-0">
                       View Details →
                     </button>
                   </div>
