@@ -213,7 +213,7 @@ const HeroCarousel = () => {
             whileHover={{ scale: 1.2 }}
             className={`transition-all duration-500 rounded-full ${
               index === currentSlide
-                ? 'w-8 sm:w-10 h-2 sm:h-2.5 bg-gradient-to-r from-[hsl(var(--rose-gold))] to-[hsl(var(--gold))]'
+                ? 'w-8 sm:w-10 h-2 sm:h-2.5 bg-gradient-to-r from-[hsl(var(--rose-gold))] to-[hsl(var(--rose-gold))]'
                 : 'w-2 sm:w-2.5 h-2 sm:h-2.5 bg-white hover:bg-white/40 border border-black/10'
             }`}
           />

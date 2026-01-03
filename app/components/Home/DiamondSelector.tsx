@@ -181,7 +181,7 @@ const DiamondSelector = () => {
                   {/* Selection ring indicator */}
                   {isSelected && (
                     <div
-                      className="absolute inset-0 rounded-full border-2 border-white bg-[hsl(var(--lead-text))] animate-pulse"
+                      className="absolute inset-0 rounded-full border-2 border-white bg-[hsl(var(--secondary-rich))] animate-pulse"
                       style={{ animationDuration: '4s' }}
                     ></div>
                   )}
@@ -199,7 +199,7 @@ const DiamondSelector = () => {
                     Featured Cut
                   </span>
                 </div>
-                <h3 className="font-luxury-serif text-4xl lg:text-5xl font-bold text-[hsl(var(--primary))] capitalize transition-all duration-300">
+                <h3 className="font-luxury-serif text-4xl lg:text-5xl font-bold text-[hsl(var(--foreground))] capitalize transition-all duration-300">
                   {diamondTypes.find((d) => d.id === selectedDiamond)?.name} Cut
                 </h3>
               </div>
