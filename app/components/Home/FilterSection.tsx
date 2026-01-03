@@ -89,7 +89,7 @@ const FilterSection = ({ facetValues }: FilterSectionProps) => {
     <section className="py-20 bg-[hsl(var(--background))]">
       <div className="container mx-auto px-6">
         <div className="text-center space-y-4 mb-12">
-          <h2 className="font-luxury-serif text-4xl lg:text-5xl font-bold text-[hsl(var(--primary))]">
+          <h2 className="font-luxury-serif text-4xl lg:text-5xl font-bold text-[hsl(var(--foreground))]">
             Find Your Perfect Ring
           </h2>
           <p className="text-[hsl(var(--muted-foreground))] font-luxury-sans text-lg max-w-2xl mx-auto">
@@ -109,17 +109,17 @@ const FilterSection = ({ facetValues }: FilterSectionProps) => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Shape Filter - Dynamic */}
             <div className="space-y-3">
-              <label className="font-luxury-sans text-sm font-semibold text-[hsl(var(--primary))] block">
+              <label className="font-luxury-sans text-sm font-semibold text-[hsl(var(--foreground))] block">
                 Diamond Shape
               </label>
               <Select
                 value={selectedFacets.shape}
                 onValueChange={(value) => handleFilterChange('shape', value)}
               >
-                <SelectTrigger className="w-full">
+                <SelectTrigger className="w-full bg-[hsl(var(--card))]">
                   <SelectValue placeholder="Select shape" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-[hsl(var(--card))]">
                   {shapeFacets.map((facet) => (
                     <SelectItem key={facet.id} value={facet.id}>
                       {facet.name} ({facet.count})
@@ -131,17 +131,17 @@ const FilterSection = ({ facetValues }: FilterSectionProps) => {
 
             {/* Setting Filter - Dynamic */}
             <div className="space-y-3">
-              <label className="font-luxury-sans text-sm font-semibold text-[hsl(var(--primary))] block">
+              <label className="font-luxury-sans text-sm font-semibold text-[hsl(var(--foreground))] block">
                 Setting Style
               </label>
               <Select
                 value={selectedFacets.setting}
                 onValueChange={(value) => handleFilterChange('setting', value)}
               >
-                <SelectTrigger className="w-full">
+                <SelectTrigger className="w-full bg-[hsl(var(--card))]">
                   <SelectValue placeholder="Select style" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-[hsl(var(--card))]">
                   {settingFacets.map((facet) => (
                     <SelectItem key={facet.id} value={facet.id}>
                       {facet.name} ({facet.count})
@@ -153,17 +153,17 @@ const FilterSection = ({ facetValues }: FilterSectionProps) => {
 
             {/* Metal Filter - Dynamic */}
             <div className="space-y-3">
-              <label className="font-luxury-sans text-sm font-semibold text-[hsl(var(--primary))] block">
+              <label className="font-luxury-sans text-sm font-semibold text-[hsl(var(--foreground))] block">
                 Ring Material
               </label>
               <Select
                 value={selectedFacets.metal}
                 onValueChange={(value) => handleFilterChange('metal', value)}
               >
-                <SelectTrigger className="w-full">
+                <SelectTrigger className="w-full bg-[hsl(var(--card))]">
                   <SelectValue placeholder="Select material" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-[hsl(var(--card))]">
                   {metalFacets.map((facet) => (
                     <SelectItem key={facet.id} value={facet.id}>
                       {facet.name} ({facet.count})
@@ -175,17 +175,17 @@ const FilterSection = ({ facetValues }: FilterSectionProps) => {
 
             {/* Size Filter - Dynamic */}
             <div className="space-y-3">
-              <label className="font-luxury-sans text-sm font-semibold text-[hsl(var(--primary))] block">
+              <label className="font-luxury-sans text-sm font-semibold text-[hsl(var(--foreground))] block">
                 Ring Size
               </label>
               <Select
                 value={selectedFacets.size}
                 onValueChange={(value) => handleFilterChange('size', value)}
               >
-                <SelectTrigger className="w-full">
+                <SelectTrigger className="w-full bg-[hsl(var(--card))]">
                   <SelectValue placeholder="Select size" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-[hsl(var(--card))]">
                   {sizeFacets.map((facet) => (
                     <SelectItem key={facet.id} value={facet.id}>
                       {facet.name} ({facet.count})
@@ -196,17 +196,17 @@ const FilterSection = ({ facetValues }: FilterSectionProps) => {
             </div>
             {/* Carat Filter - Dynamic */}
             <div className="space-y-3">
-              <label className="font-luxury-sans text-sm font-semibold text-[hsl(var(--primary))] block">
+              <label className="font-luxury-sans text-sm font-semibold text-[hsl(var(--foreground))] block">
                 Carat
               </label>
               <Select
                 value={selectedFacets.carat}
                 onValueChange={(value) => handleFilterChange('carat', value)}
               >
-                <SelectTrigger className="w-full">
+                <SelectTrigger className="w-full bg-[hsl(var(--card))]">
                   <SelectValue placeholder="Select Carat" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-[hsl(var(--card))]">
                   {caratFacets.map((facet) => (
                     <SelectItem key={facet.id} value={facet.id}>
                       {facet.name} ({facet.count})
@@ -222,7 +222,7 @@ const FilterSection = ({ facetValues }: FilterSectionProps) => {
             <div className="max-w-2xl mx-auto">
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
-                  <label className="font-luxury-sans text-sm font-semibold text-[hsl(var(--primary))]">
+                  <label className="font-luxury-sans text-sm font-semibold text-[hsl(var(--foreground))]">
                     Price Range
                   </label>
                   <span className="font-luxury-sans text-sm text-[hsl(var(--muted-foreground))]">
@@ -248,7 +248,10 @@ const FilterSection = ({ facetValues }: FilterSectionProps) => {
 
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 mt-8 pt-8 border-t border-[hsl(var(--border))]">
-            <Button className="btn-luxury flex-1" onClick={navigateToSearch}>
+            <Button
+              className="btn-luxury hover:text-[hsl(var(--primary))] flex-1"
+              onClick={navigateToSearch}
+            >
               <Search className="w-5 h-5 mr-2" />
               Search Rings
             </Button>
