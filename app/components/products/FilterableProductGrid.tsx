@@ -92,7 +92,7 @@ export function FilterableProductGrid({
           </div>
 
           <div className="flex flex-row justify-between items-center gap-4">
-            <span className="self-start text-gray-500 text-sm mt-2">
+            <span className="self-start text-[hsl(var(--lead-text))]  text-sm mt-2">
               {t('product.showing')}{' '}
               {translatePaginationFrom(
                 appliedPaginationPage,

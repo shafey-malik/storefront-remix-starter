@@ -32,7 +32,7 @@ const Modal: React.FC<PropsWithChildren<ModalProps>> & {
           afterEnter={afterOpen}
           afterLeave={afterClose}
         >
-          <div className="fixed inset-0 bg-gray-700 bg-opacity-75 backdrop-blur-sm" />
+          <div className="fixed inset-0 bg-foreground bg-opacity-75 backdrop-blur-sm" />
         </Transition.Child>
 
         <div className="fixed inset-0 overflow-y-auto">
@@ -48,7 +48,7 @@ const Modal: React.FC<PropsWithChildren<ModalProps>> & {
             >
               <Dialog.Panel
                 className={clsx(
-                  'flex flex-col justify-start w-full max-h-[90vh] overflow-auto transform bg-white p-4 sm:p-6 lg:p-10 text-left align-middle shadow-xl transition-all rounded-lg',
+                  'flex flex-col justify-start w-full max-h-[90vh] overflow-auto transform bg-[hsl(var(--card))] p-4 sm:p-6 lg:p-10 text-left align-middle shadow-xl transition-all rounded-lg',
                   {
                     'sm:max-w-md': size === 'small',
                     'sm:max-w-xl': size === 'medium',
@@ -84,7 +84,7 @@ const Title: React.FC<PropsWithChildren> = ({ children }) => {
 
 const Description: React.FC<PropsWithChildren> = ({ children }) => {
   return (
-    <Dialog.Description className="flex text-xs sm:text-sm text-gray-700 items-center justify-center pt-2 pb-3 sm:pb-4 h-full">
+    <Dialog.Description className="flex text-xs sm:text-sm text-[hsl(var(--lead-text))]  items-center justify-center pt-2 pb-3 sm:pb-4 h-full">
       {children}
     </Dialog.Description>
   );

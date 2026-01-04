@@ -13,7 +13,7 @@ export function FiltersButton({
   return (
     <button
       type="button"
-      className="flex space-x-2 items-center border rounded p-2 ml-4 sm:ml-6 text-gray-400 hover:text-gray-500 lg:hidden"
+      className="flex space-x-2 items-center border rounded p-2 ml-4 sm:ml-6 text-[hsl(var(--foreground))]  hover:text-[hsl(var(--lead-text))]  lg:hidden"
       onClick={onClick}
     >
       {!!filterCount ? (

@@ -35,10 +35,10 @@ export default function SignInPage() {
     <>
       <div className="flex flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
-          <h2 className="mt-6 text-center text-3xl text-gray-900">
+          <h2 className="mt-6 text-center text-3xl text-[hsl(var(--foreground))] ">
             {t('account.signInTitle')}
           </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
+          <p className="mt-2 text-center text-sm text-[hsl(var(--lead-text))] ">
             {t('common.or')}{' '}
             <Link
               to="/sign-up"
@@ -50,7 +50,7 @@ export default function SignInPage() {
         </div>
 
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md bg-[hsl(var(--card))] ">
-          <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+          <div className="bg-[hsl(var(--card))] py-8 px-4 shadow sm:rounded-lg sm:px-10">
             {/* <div className="bg-yellow-50 border border-yellow-400 text-yellow-800 rounded p-4 text-center text-sm">
               <p>{t('vendure.demoCredentials')}</p>
               <p>
@@ -72,7 +72,7 @@ export default function SignInPage() {
                 <div>
                   <label
                     htmlFor="email"
-                    className="block text-sm font-medium text-gray-700"
+                    className="block text-sm font-medium text-[hsl(var(--foreground))] "
                   >
                     {t('account.emailAddress')}
                   </label>
@@ -85,7 +85,7 @@ export default function SignInPage() {
                       required
                       defaultValue="test@vendure.io"
                       placeholder={t('account.emailAddress')}
-                      className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm disabled:text-gray-400 disabled:bg-gray-200 disabled:cursor-not-allowed"
+                      className="appearance-none block w-full px-3 py-2 border border-foreground rounded-md shadow-sm placeholder-lead-text focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm disabled:text-[hsl(var(--lead-text))]  disabled:bg-card disabled:cursor-not-allowed"
                     />
                   </div>
                 </div>
@@ -93,7 +93,7 @@ export default function SignInPage() {
                 <div>
                   <label
                     htmlFor="password"
-                    className="block text-sm font-medium text-gray-700"
+                    className="block text-sm font-medium text-[hsl(var(--foreground))] "
                   >
                     {t('account.password')}
                   </label>
@@ -106,7 +106,7 @@ export default function SignInPage() {
                       required
                       placeholder={t('account.password')}
                       defaultValue="test"
-                      className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm disabled:text-gray-400 disabled:bg-gray-200 disabled:cursor-not-allowed"
+                      className="appearance-none block w-full px-3 py-2 border border-foreground rounded-md shadow-sm placeholder-lead-text focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm disabled:text-[hsl(var(--lead-text))]  disabled:bg-card disabled:cursor-not-allowed"
                     />
                   </div>
                 </div>
@@ -117,12 +117,12 @@ export default function SignInPage() {
                       id="rememberMe"
                       name="rememberMe"
                       type="checkbox"
-                      className="h-4 w-4 text-primary focus:ring-primary-500 border-gray-300 rounded disabled:bg-gray-300 disabled:cursor-not-allowed"
+                      className="h-4 w-4 text-primary focus:ring-primary-500 border-foreground rounded disabled:bg-card disabled:cursor-not-allowed"
                       defaultChecked
                     />
                     <label
                       htmlFor="rememberMe"
-                      className="ml-2 block text-sm text-gray-900"
+                      className="ml-2 block text-sm text-[hsl(var(--foreground))] "
                     >
                       {t('account.rememberMe')}
                     </label>
@@ -166,7 +166,7 @@ export default function SignInPage() {
                   >
                     <span className="flex gap-4 items-center">
                       {login.state !== 'idle' && (
-                        <ArrowPathIcon className="animate-spin h-5 w-5 text-gray-500" />
+                        <ArrowPathIcon className="animate-spin h-5 w-5 text-[hsl(var(--lead-text))] " />
                       )}
                       {t('account.signIn')}
                     </span>
@@ -177,10 +177,12 @@ export default function SignInPage() {
               <div className="mt-6">
                 <div className="relative">
                   <div className="absolute inset-0 flex items-center">
-                    <div className="w-full border-t border-gray-300" />
+                    <div className="w-full border-t border-foreground" />
                   </div>
                   <div className="relative flex justify-center text-sm">
-                    <span className="px-2 bg-white text-gray-500">Or</span>
+                    <span className="px-2 bg-[hsl(var(--card))] text-[hsl(var(--lead-text))] ">
+                      Or
+                    </span>
                   </div>
                 </div>
                 <div className="mt-6">

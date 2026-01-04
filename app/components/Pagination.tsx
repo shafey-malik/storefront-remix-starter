@@ -33,7 +33,7 @@ export function Pagination({
     >
       <span className="flex gap-4 items-center">
         {navigation.state !== 'idle' && (
-          <ArrowPathIcon className="animate-spin h-6 w-6 text-gray-500" />
+          <ArrowPathIcon className="animate-spin h-6 w-6 text-[hsl(var(--lead-text))] " />
         )}
         <Select
           name="limit"

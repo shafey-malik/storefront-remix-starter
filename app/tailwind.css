@@ -102,7 +102,7 @@
   --surface-champagne: 163 7% 6%;
 
   /* Primary uses a deep teal (#06402B) tuned for HSL components */
-  --primary: 163 80% 12%;
+  --primary: 163 80% 19%;
   --primary-foreground: 0 0% 98%;
   --primary-light: 163 60% 18%;
 
@@ -159,7 +159,7 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-background text-[hsl(var(--foreground))] font-sans antialiased;
   }
 }
 
@@ -250,7 +250,7 @@
 
 ::-webkit-scrollbar-track {
   background: hsl(0, 0%, 98%);
-  border-left: 1px solid hsl(45, 33%, 90%);
+  border-left: 1px solid hsl(0, 33%, 90%);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -265,7 +265,7 @@
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: hsl(45, 59%, 68%) hsl(0, 0%, 98%);
+  scrollbar-color: hsl(45, 59%, 68%) hsl(var(--card));
 }
 
 

@@ -186,13 +186,13 @@ function DefaultSparseErrorPage({
       </head>
       <body>
         <main className="flex flex-col items-center px-4 py-16 sm:py-32 text-center">
-          <span className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
+          <span className="text-sm font-semibold text-[hsl(var(--lead-text))]  uppercase tracking-wide">
             {tagline}
           </span>
-          <h1 className="mt-2 font-bold text-gray-900 tracking-tight text-4xl sm:text-5xl">
+          <h1 className="mt-2 font-bold text-[hsl(var(--foreground))]  tracking-tight text-4xl sm:text-5xl">
             {headline}
           </h1>
-          <p className="mt-4 text-base text-gray-500 max-w-full break-words">
+          <p className="mt-4 text-base text-[hsl(var(--lead-text))]  max-w-full break-words">
             {description}
           </p>
           <div className="mt-6">

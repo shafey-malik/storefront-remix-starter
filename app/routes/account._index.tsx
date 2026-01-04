@@ -252,10 +252,12 @@ export default function AccountDetails() {
       <div className="space-y-10 p-4 mt-5">
         <div className="grid grid-cols-2 gap-4">
           <div className="col-span-2">
-            <h3 className="text-sm text-gray-500">{t('account.email')}</h3>
+            <h3 className="text-sm text-[hsl(var(--lead-text))] ">
+              {t('account.email')}
+            </h3>
             {emailSavedResponse ? (
               <span>
-                <span className="italic text-gray-800">
+                <span className="italic text-[hsl(var(--foreground))] ">
                   {emailSavedResponse.newEmailAddress}
                 </span>
                 <span className="ml-2 bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
@@ -276,7 +278,7 @@ export default function AccountDetails() {
             </HighlightedButton>
           </div>
         </div>
-        <div className="border-t border-gray-200 pt-10">
+        <div className="border-t border-foreground pt-10">
           <ValidatedForm
             validator={validator}
             formRef={formRef}
@@ -323,7 +325,7 @@ export default function AccountDetails() {
                 </>
               ) : (
                 <div>
-                  <h3 className="text-sm text-gray-500">
+                  <h3 className="text-sm text-[hsl(var(--lead-text))] ">
                     {t('account.fullName')}
                   </h3>
                   {replaceEmptyString(fullName)}
@@ -335,7 +337,7 @@ export default function AccountDetails() {
                   <Input label={t('account.phoneNumber')} name="phoneNumber" />
                 ) : (
                   <div>
-                    <h3 className="text-sm text-gray-500">
+                    <h3 className="text-sm text-[hsl(var(--lead-text))] ">
                       {t('account.phoneNumber')}
                     </h3>
                     {replaceEmptyString(phoneNumber)}

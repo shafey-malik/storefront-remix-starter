@@ -50,34 +50,34 @@ export default function FacetFilterControls({
               leaveFrom="translate-x-0"
               leaveTo="translate-x-full"
             >
-              <Dialog.Panel className="ml-auto relative max-w-xs w-full h-full bg-white shadow-xl py-4 pb-12 flex flex-col overflow-y-auto">
+              <Dialog.Panel className="ml-auto relative max-w-xs w-full h-full bg-[hsl(var(--card))] shadow-xl py-4 pb-12 flex flex-col overflow-y-auto">
                 <div className="px-4 flex items-center justify-between">
-                  <h2 className="text-lg font-medium text-gray-900">
+                  <h2 className="text-lg font-medium text-[hsl(var(--foreground))] ">
                     {t('common.filters')}
                   </h2>
                   <button
                     type="button"
-                    className="-mr-2 w-10 h-10 bg-white p-2 rounded-md flex items-center justify-center text-gray-400"
+                    className="-mr-2 w-10 h-10 bg-[hsl(var(--card))] p-2 rounded-md flex items-center justify-center text-[hsl(var(--lead-text))] "
                     onClick={() => setMobileFiltersOpen(false)}
                   >
                     <span className="sr-only">{t('common.closeMenu')}</span>
                     <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                   </button>
                 </div>
-                <div className="mt-4 border-t border-gray-200">
+                <div className="mt-4 border-t border-foreground">
                   <input type="hidden" name="q" value={q} />
                   {facetFilterTracker.facetsWithValues.map((facet) => (
                     <Disclosure
                       as="div"
                       key={facet.id}
                       defaultOpen={true}
-                      className="border-t border-gray-200 px-4 py-6"
+                      className="border-t border-foreground px-4 py-6"
                     >
                       {({ open }) => (
                         <>
                           <h3 className="-mx-2 -my-3 flow-root">
-                            <Disclosure.Button className="px-2 py-3 bg-white w-full flex items-center justify-between text-gray-400 hover:text-gray-500">
-                              <span className="font-medium text-gray-900 uppercase">
+                            <Disclosure.Button className="px-2 py-3 bg-[hsl(var(--card))] w-full flex items-center justify-between text-[hsl(var(--lead-text))]  hover:text-[hsl(var(--foreground))] ">
+                              <span className="font-medium text-[hsl(var(--foreground))]  uppercase">
                                 {facet.name}
                               </span>
                               <span className="ml-6 flex items-center">
@@ -115,11 +115,11 @@ export default function FacetFilterControls({
                                         ) as HTMLInputElement
                                       ).checked = ev.target.checked;
                                     }}
-                                    className="h-4 w-4 border-gray-300 rounded text-primary focus:ring-primary-500"
+                                    className="h-4 w-4 border-foreground rounded text-primary focus:ring-primary-500"
                                   />
                                   <label
                                     htmlFor={`filter-mobile-${facet.id}-${optionIdx}`}
-                                    className="ml-3 min-w-0 flex-1 text-gray-500"
+                                    className="ml-3 min-w-0 flex-1 text-[hsl(var(--lead-text))] "
                                   >
                                     {value.name}
                                   </label>
@@ -145,13 +145,13 @@ export default function FacetFilterControls({
             as="div"
             key={facet.id}
             defaultOpen={true}
-            className="border-b border-gray-200 py-6"
+            className="border-b border-foreground py-6"
           >
             {({ open }) => (
               <>
                 <h3 className="-my-3 flow-root">
-                  <Disclosure.Button className="py-3 bg-white w-full flex items-center justify-between text-sm text-gray-400 hover:text-gray-500">
-                    <span className="font-medium text-gray-900 uppercase">
+                  <Disclosure.Button className="py-3 bg-[hsl(var(--card))] w-full flex items-center justify-between text-sm text-[hsl(var(--lead-text))]  hover:text-[hsl(var(--foreground))] ">
+                    <span className="font-medium text-[hsl(var(--foreground))]  uppercase">
                       {facet.name}
                     </span>
                     <span className="ml-6 flex items-center">
@@ -177,11 +177,11 @@ export default function FacetFilterControls({
                           type="checkbox"
                           checked={value.selected}
                           onChange={() => {}}
-                          className="h-4 w-4 border-gray-300 rounded text-primary focus:ring-primary-500"
+                          className="h-4 w-4 border-foreground rounded text-primary focus:ring-primary-500"
                         />
                         <label
                           htmlFor={`filter-${facet.id}-${optionIdx}`}
-                          className="ml-3 text-sm text-gray-600"
+                          className="ml-3 text-sm text-[hsl(var(--lead-text))] "
                         >
                           {value.name}
                         </label>

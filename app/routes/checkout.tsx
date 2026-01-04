@@ -23,7 +23,7 @@ export default function Checkout() {
   let isConfirmationPage = state === 'confirmation';
 
   return (
-    <div className="bg-gray-50">
+    <div className="bg-[hsl(var(--card))]">
       <div
         className={classNames(
           isConfirmationPage ? 'lg:max-w-3xl mx-auto' : 'lg:max-w-7xl',
@@ -48,7 +48,7 @@ export default function Checkout() {
 
                 {stepIdx !== steps.length - 1 ? (
                   <ChevronRightIcon
-                    className="w-5 h-5 text-gray-300 ml-4"
+                    className="w-5 h-5 text-[hsl(var(--lead-text))]  ml-4"
                     aria-hidden="true"
                   />
                 ) : null}
@@ -64,7 +64,7 @@ export default function Checkout() {
           {/* Order summary */}
           {!isConfirmationPage && (
             <div className="mt-10 lg:mt-0">
-              <h2 className="text-lg font-medium text-gray-900 mb-4">
+              <h2 className="text-lg font-medium text-[hsl(var(--foreground))]  mb-4">
                 {t('order.summary')}
               </h2>
 

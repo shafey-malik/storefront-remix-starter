@@ -217,7 +217,7 @@ export default function ProductSlug() {
               <h3 className="sr-only">{t('product.description')}</h3>
 
               <div
-                className="text-base text-gray-700"
+                className="text-base text-[hsl(var(--lead-text))] "
                 dangerouslySetInnerHTML={{
                   __html: product.description,
                 }}
@@ -230,10 +230,10 @@ export default function ProductSlug() {
 
               {/* Selected variant display above boxes - WITH BASE PRODUCT NAME */}
               <div className="mt-4 mb-3 flex items-baseline gap-3">
-                <h2 className="text-2xl sm:text-3xl font-light tracking-tight text-gray-900">
+                <h2 className="text-2xl sm:text-3xl font-light tracking-tight text-[hsl(var(--foreground))] ">
                   {product.name}
                 </h2>
-                <div className="text-3xl font-light text-gray-900">
+                <div className="text-3xl font-light text-[hsl(var(--foreground))] ">
                   {extractVariantDisplayName(
                     selectedVariant?.name,
                     product.name,
@@ -245,7 +245,7 @@ export default function ProductSlug() {
               {/* Horizontal scrollable box selector - ALWAYS VISIBLE ARROWS */}
               {/* Horizontal scrollable box selector - HOVER ONLY ARROWS */}
               <div className="mt-2">
-                <label className="block text-sm font-medium text-gray-700 mb-3">
+                <label className="block text-sm font-medium text-[hsl(var(--foreground))]  mb-3">
                   {t('product.selectOption')}
                 </label>
 
@@ -309,12 +309,12 @@ export default function ProductSlug() {
               px-3 py-4
               border-2 rounded-lg
               text-center
-              bg-white
+              bg-[hsl(var(--card))]
               transition-all
               ${
                 isSelected
                   ? 'border-[hsl(var(--secondary))] bg-primary-50'
-                  : 'border-gray-200 hover:border-[hsl(var(--secondary))]'
+                  : 'border-foreground hover:border-[hsl(var(--secondary))]'
               }
               ${
                 isOutOfStock
@@ -324,7 +324,7 @@ export default function ProductSlug() {
             `}
                         >
                           {variant.featuredAsset && (
-                            <div className="w-14 h-14 mx-auto mb-2 rounded overflow-hidden border border-gray-100">
+                            <div className="w-14 h-14 mx-auto mb-2 rounded overflow-hidden border border-foreground">
                               <img
                                 src={
                                   variant.featuredAsset.preview + '?w=80&h=80'
@@ -336,7 +336,7 @@ export default function ProductSlug() {
                           )}
 
                           {/* VERTICALLY STACKED VARIANT OPTIONS */}
-                          <div className="text-xs font-medium text-gray-900 space-y-1">
+                          <div className="text-xs font-medium text-[hsl(var(--foreground))]  space-y-1">
                             {splitVariantOptionsSimple(variantOption).map(
                               (optionPart, index) => (
                                 <div key={index} className="leading-tight">
@@ -346,7 +346,7 @@ export default function ProductSlug() {
                             )}
                           </div>
 
-                          <div className="text-xs text-gray-600 mt-2">
+                          <div className="text-xs text-[hsl(var(--lead-text))]  mt-2">
                             <Price
                               priceWithTax={variant.priceWithTax}
                               currencyCode={variant.currencyCode}
@@ -400,7 +400,7 @@ export default function ProductSlug() {
               ></input>
 
               <div className="mt-10 flex flex-col sm:flex-row sm:items-center">
-                <p className="text-3xl text-gray-900 mr-4">
+                <p className="text-3xl text-[hsl(var(--foreground))]  mr-4">
                   <Price
                     priceWithTax={selectedVariant?.priceWithTax}
                     currencyCode={selectedVariant?.currencyCode}
@@ -411,14 +411,14 @@ export default function ProductSlug() {
                     type="submit"
                     className={`max-w-xs flex-1 ${
                       activeOrderFetcher.state !== 'idle'
-                        ? 'bg-gray-400'
+                        ? 'bg-lead-text/50'
                         : qtyInCart === 0
                         ? 'bg-primary hover:bg-primary-700'
                         : 'bg-green-600 active:bg-green-700 hover:bg-green-700'
                     }
                                      transition-colors border border-transparent rounded-md py-3 px-8 flex items-center
                                       justify-center text-base font-medium text-white focus:outline-none
-                                      focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-primary-500 sm:w-full`}
+                                      focus:ring-2 focus:ring-offset-2 focus:ring-offset-[hsl(var(--card))] focus:ring-primary-500 sm:w-full`}
                     disabled={activeOrderFetcher.state !== 'idle'}
                   >
                     {qtyInCart ? (
@@ -433,7 +433,7 @@ export default function ProductSlug() {
 
                   {/* <button
                     type="button"
-                    className="ml-4 py-3 px-3 rounded-md flex items-center justify-center text-gray-400 hover:bg-gray-100 hover:text-gray-500"
+                    className="ml-4 py-3 px-3 rounded-md flex items-center justify-center text-[hsl(var(--foreground))]  hover:bg-card hover:text-[hsl(var(--lead-text))] "
                   >
                     <HeartIcon
                       className="h-6 w-6 flex-shrink-0"
@@ -446,7 +446,9 @@ export default function ProductSlug() {
                 </div>
               </div>
               <div className="mt-2 flex items-center space-x-2">
-                <span className="text-gray-500">{selectedVariant?.sku}</span>
+                <span className="text-[hsl(var(--lead-text))] ">
+                  {selectedVariant?.sku}
+                </span>
                 <StockLevelLabel stockLevel={selectedVariant?.stockLevel} />
               </div>
               {addItemToOrderError && (
@@ -456,10 +458,10 @@ export default function ProductSlug() {
               )}
 
               <section className="mt-12 pt-12 border-t text-xs">
-                <h3 className="text-gray-600 font-bold mb-2">
+                <h3 className="text-[hsl(var(--foreground))]  font-bold mb-2">
                   {t('product.shippingAndReturns')}
                 </h3>
-                <div className="text-gray-500 space-y-1">
+                <div className="text-[hsl(var(--lead-text))]  space-y-1">
                   <p>{t('product.shippingInfo')}</p>
                   <p>{t('product.shippingCostsInfo')}</p>
                   <p>{t('product.returnsInfo')}</p>
@@ -481,7 +483,7 @@ export function CatchBoundary() {
 
   return (
     <div className="max-w-6xl mx-auto px-4">
-      <h2 className="text-3xl sm:text-5xl font-light tracking-tight text-gray-900 my-8">
+      <h2 className="text-3xl sm:text-5xl font-light tracking-tight text-[hsl(var(--foreground))]  my-8">
         {t('product.notFound')}
       </h2>
       <div className="lg:grid lg:grid-cols-2 lg:gap-x-8 lg:items-start mt-4 md:mt-12">

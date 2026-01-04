@@ -21,40 +21,45 @@ export function CartContents({
 
   return (
     <div className="flow-root">
-      <ul role="list" className="-my-6 divide-y divide-gray-200">
+      <ul role="list" className="space-y-4">
         {(orderLines ?? []).map((line) => (
-          <li key={line.id} className="py-6 flex">
-            <div className="flex-shrink-0 w-24 h-24 border border-gray-200 rounded-md overflow-hidden">
+          <li
+            key={line.id}
+            className="p-4 rounded-lg border border-[hsl(var(--border))] bg-gradient-to-br from-[hsl(var(--card))] to-[hsl(var(--card)/95%)] hover:shadow-lg transition-all duration-300 flex gap-4"
+          >
+            <div className="flex-shrink-0 w-20 h-20 rounded-lg border border-[hsl(var(--border))] overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 group">
               <img
                 src={line.featuredAsset?.preview + '?preset=thumb'}
                 alt={line.productVariant.name}
-                className="w-full h-full object-center object-cover"
+                className="w-full h-full object-center object-cover group-hover:scale-105 transition-transform duration-300"
               />
             </div>
 
-            <div className="ml-4 flex-1 flex flex-col">
-              <div>
-                <div className="flex justify-between text-base font-medium text-gray-900">
-                  <h3>
-                    <Link to={`/products/${line.productVariant.product.slug}`}>
-                      {line.productVariant.name}
-                    </Link>
-                  </h3>
-                  <p className="ml-4">
-                    <Price
-                      priceWithTax={line.linePriceWithTax}
-                      currencyCode={currencyCode}
-                    ></Price>
-                  </p>
-                </div>
+            <div className="ml-0 flex-1 flex flex-col justify-between">
+              <div className="space-y-1">
+                <h3 className="text-sm font-luxury-serif font-semibold text-[hsl(var(--foreground))] hover:text-[hsl(var(--primary))] transition-colors">
+                  <Link to={`/products/${line.productVariant.product.slug}`}>
+                    {line.productVariant.name}
+                  </Link>
+                </h3>
+                <p className="text-lg font-luxury-sans font-bold text-[hsl(var(--secondary-rich))]">
+                  <Price
+                    priceWithTax={line.linePriceWithTax}
+                    currencyCode={currencyCode}
+                  ></Price>
+                </p>
               </div>
-              <div className="flex-1 flex items-center text-sm">
+              <div className="flex items-center justify-between pt-3 border-t border-[hsl(var(--border))/30%)]">
                 {editable ? (
-                  <Form>
-                    <label htmlFor={`quantity-${line.id}`} className="mr-2">
+                  <Form className="flex items-center gap-2">
+                    <label
+                      htmlFor={`quantity-${line.id}`}
+                      className="text-xs font-luxury-sans font-semibold text-[hsl(var(--foreground))] uppercase tracking-wide"
+                    >
                       {t('common.quantity')}
                     </label>
                     <select
+                      className=" border border-red px-3 py-1.5 text-sm font-medium text-black bg-[hsl(var(--lead-text))] cursor-pointer appearance-none focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary))] focus:ring-offset-0 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
                       disabled={!isEditable}
                       id={`quantity-${line.id}`}
                       name={`quantity-${line.id}`}
@@ -63,7 +68,6 @@ export function CartContents({
                         adjustOrderLine &&
                         adjustOrderLine(line.id, +e.target.value)
                       }
-                      className="max-w-full rounded-md border border-gray-300 py-1.5 text-base leading-5 font-medium text-gray-700 text-left shadow-sm focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
                     >
                       <option value={1}>1</option>
                       <option value={2}>2</option>
@@ -76,9 +80,13 @@ export function CartContents({
                     </select>
                   </Form>
                 ) : (
-                  <div className="text-gray-800">
-                    <span className="mr-1">{t('common.quantity')}</span>
-                    <span className="font-medium">{line.quantity}</span>
+                  <div className="text-[hsl(var(--foreground))]">
+                    <span className="text-xs font-luxury-sans font-semibold text-[hsl(var(--muted-foreground))] uppercase tracking-wide">
+                      {t('common.quantity')}
+                    </span>
+                    <span className="ml-2 font-medium text-sm ">
+                      {line.quantity}
+                    </span>
                   </div>
                 )}
                 <div className="flex-1"></div>
@@ -88,7 +96,7 @@ export function CartContents({
                       type="submit"
                       name="removeItem"
                       value={line.id}
-                      className="font-medium text-primary hover:text-primary-500"
+                      className="text-xs font-luxury-sans font-semibold text-[hsl(var(--primary))] hover:text-red-500 hover:bg-red-500/10 px-3 py-1.5 rounded-md transition-all duration-200 uppercase tracking-wide"
                       onClick={() => removeItem && removeItem(line.id)}
                     >
                       {t('common.remove')}

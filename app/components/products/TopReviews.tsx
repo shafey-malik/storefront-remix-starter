@@ -57,10 +57,10 @@ export default function TopReviews() {
   return (
     <div className="">
       <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-6xl lg:px-8">
-        <h2 className="text-lg font-medium text-gray-900">
+        <h2 className="text-lg font-medium text-[hsl(var(--foreground))] ">
           {t('product.recentReviews')}
         </h2>
-        <div className="mt-6 pb-10 border-t border-gray-200 divide-y divide-gray-200 space-y-10">
+        <div className="mt-6 pb-10 border-t border-foreground divide-y divide-foreground space-y-10">
           {reviews.map((review) => (
             <div
               key={review.id}
@@ -75,14 +75,14 @@ export default function TopReviews() {
                         className={classNames(
                           review.rating > rating
                             ? 'text-yellow-400'
-                            : 'text-gray-200',
+                            : 'text-[hsl(var(--lead-text))] ',
                           'h-5 w-5 flex-shrink-0',
                         )}
                         aria-hidden="true"
                       />
                     ))}
                   </div>
-                  <p className="ml-3 text-sm text-gray-700">
+                  <p className="ml-3 text-sm text-[hsl(var(--lead-text))] ">
                     {review.rating}
                     <span className="sr-only">
                       {' '}
@@ -92,12 +92,12 @@ export default function TopReviews() {
                 </div>
 
                 <div className="mt-4 lg:mt-6 xl:mt-0 xl:col-span-2">
-                  <h3 className="text-sm font-medium text-gray-900">
+                  <h3 className="text-sm font-medium text-[hsl(var(--foreground))] ">
                     {review.title}
                   </h3>
 
                   <div
-                    className="mt-3 space-y-6 text-sm text-gray-500"
+                    className="mt-3 space-y-6 text-sm text-[hsl(var(--lead-text))] "
                     dangerouslySetInnerHTML={{
                       __html: review.content,
                     }}
@@ -106,10 +106,12 @@ export default function TopReviews() {
               </div>
 
               <div className="mt-6 flex items-center text-sm lg:mt-0 lg:col-start-1 lg:col-span-4 lg:row-start-1 lg:flex-col lg:items-start xl:col-span-3">
-                <p className="font-medium text-gray-900">{review.author}</p>
+                <p className="font-medium text-[hsl(var(--foreground))] ">
+                  {review.author}
+                </p>
                 <time
                   dateTime={review.datetime}
-                  className="ml-4 border-l border-gray-200 pl-4 text-gray-500 lg:ml-0 lg:mt-2 lg:border-0 lg:pl-0"
+                  className="ml-4 border-l border-foreground pl-4 text-[hsl(var(--lead-text))]  lg:ml-0 lg:mt-2 lg:border-0 lg:pl-0"
                 >
                   {review.date}
                 </time>

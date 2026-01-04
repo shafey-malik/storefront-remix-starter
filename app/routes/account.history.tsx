@@ -79,11 +79,11 @@ export default function AccountHistory() {
     <div className="pt-10 relative">
       {/* Loading-Overlay */}
       {navigation.state !== 'idle' && (
-        <div className="absolute top-0 left-0 w-full h-full z-100 bg-white bg-opacity-75"></div>
+        <div className="absolute top-0 left-0 w-full h-full z-100 bg-[hsl(var(--card))] bg-opacity-75"></div>
       )}
 
       {orderList.items.length === 0 && (
-        <div className="py-16 text-3xl text-center italic text-gray-300 select-none flex justify-center items-center">
+        <div className="py-16 text-3xl text-center italic text-[hsl(var(--lead-text))] /50 select-none flex justify-center items-center">
           {orderList.totalItems === 0
             ? t('order.historyEmpty')
             : t('order.historyEnd')}
@@ -102,7 +102,7 @@ export default function AccountHistory() {
 
       {/* Pagination */}
       <div className="flex flex-row justify-between items-center gap-4">
-        <span className="self-start text-gray-500 text-sm ml-4 lg:ml-6 mt-2">
+        <span className="self-start text-[hsl(var(--lead-text))]  text-sm ml-4 lg:ml-6 mt-2">
           Showing orders {showingOrdersFrom} to {showingOrdersTo} of{' '}
           {orderList.totalItems}
         </span>

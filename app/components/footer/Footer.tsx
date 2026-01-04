@@ -26,7 +26,7 @@ export default function Footer({
 
   return (
     <footer
-      className="mt-24 border-t bg-gray-50"
+      className="mt-24 border-t bg-[hsl(var(--card))]"
       aria-labelledby="footer-heading"
     >
       <h2 id="footer-heading" className="sr-only">
@@ -37,14 +37,14 @@ export default function Footer({
           <div className="grid grid-cols-2 gap-8 xl:col-span-2">
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
-                <h3 className="text-sm font-semibold text-gray-500 tracking-wider uppercase">
+                <h3 className="text-sm font-semibold text-[hsl(var(--lead-text))]  tracking-wider uppercase">
                   {t('footer.shop')}
                 </h3>
                 <ul role="list" className="mt-4 space-y-4">
                   {collections.map((collection) => (
                     <li key={collection.id}>
                       <Link
-                        className="text-base text-gray-500 hover:text-gray-600"
+                        className="text-base text-[hsl(var(--foreground))]  hover:text-[hsl(var(--lead-text))] "
                         to={'/collections/' + collection.slug}
                         prefetch="intent"
                         key={collection.id}
@@ -56,7 +56,7 @@ export default function Footer({
                 </ul>
               </div>
               <div className="mt-12 md:mt-0">
-                <h3 className="text-sm font-semibold text-gray-500 tracking-wider uppercase">
+                <h3 className="text-sm font-semibold text-[hsl(var(--lead-text))]  tracking-wider uppercase">
                   {t('footer.support')}
                 </h3>
                 <ul role="list" className="mt-4 space-y-4">
@@ -64,7 +64,7 @@ export default function Footer({
                     <li key={page}>
                       <a
                         href={href}
-                        className="text-base text-gray-500 hover:text-gray-600"
+                        className="text-base text-[hsl(var(--foreground))]  hover:text-[hsl(var(--lead-text))] "
                       >
                         {t(`navigation.support.${page}`)}
                       </a>
@@ -75,7 +75,7 @@ export default function Footer({
             </div>
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
-                <h3 className="text-sm font-semibold text-gray-500 tracking-wider uppercase">
+                <h3 className="text-sm font-semibold text-[hsl(var(--lead-text))]  tracking-wider uppercase">
                   {t('account.company')}
                 </h3>
                 <ul role="list" className="mt-4 space-y-4">
@@ -83,7 +83,7 @@ export default function Footer({
                     <li key={page}>
                       <a
                         href={href}
-                        className="text-base text-gray-500 hover:text-gray-600"
+                        className="text-base text-[hsl(var(--foreground))]  hover:text-[hsl(var(--lead-text))] "
                       >
                         {t(`navigation.company.${page}`)}
                       </a>
@@ -94,10 +94,10 @@ export default function Footer({
             </div>
           </div>
           <div className="mt-8 xl:mt-0">
-            <h3 className="text-sm font-semibold text-gray-500 tracking-wider uppercase">
+            <h3 className="text-sm font-semibold text-[hsl(var(--lead-text))]  tracking-wider uppercase">
               {t('footer.subscribeHeader')}
             </h3>
-            <p className="mt-4 text-base text-gray-500">
+            <p className="mt-4 text-base text-[hsl(var(--foreground))] ">
               {t('footer.subscribeIntro')}
             </p>
             <form className="mt-4 sm:flex sm:max-w-md">
@@ -110,13 +110,13 @@ export default function Footer({
                 id="email-address"
                 autoComplete="email"
                 required
-                className="appearance-none min-w-0 w-full bg-white border border-gray-300 rounded-md py-2 px-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white focus:border-white focus:placeholder-gray-400"
+                className="appearance-none min-w-0 w-full bg-[hsl(var(--card))] border border-foreground rounded-md py-2 px-4 text-base text-[hsl(var(--foreground))]  placeholder-lead-text focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[hsl(var(--card))] focus:ring-primary focus:border-primary focus:placeholder-lead-text"
                 placeholder={t('footer.emailPlaceholder')}
               />
               <div className="mt-3 rounded-md sm:mt-0 sm:ml-3 sm:flex-shrink-0">
                 <button
                   type="submit"
-                  className="w-full bg-primary-500 border border-transparent rounded-md py-2 px-4 flex items-center justify-center text-base font-medium text-white hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-primary-500"
+                  className="w-full bg-primary-500 border border-transparent rounded-md py-2 px-4 flex items-center justify-center text-base font-medium text-white hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[hsl(var(--card))] focus:ring-primary-500"
                 >
                   {t('footer.subscribe')}
                 </button>
@@ -126,7 +126,7 @@ export default function Footer({
         </div>
         <div className="mt-8 border-t pt-8">
           <a
-            className="flex items-center space-x-4 font-medium text-gray-500 hover:text-gray-700"
+            className="flex items-center space-x-4 font-medium text-[hsl(var(--foreground))]  hover:text-[hsl(var(--lead-text))] "
             href="https://github.com/vendure-ecommerce/storefront-remix-starter"
           >
             <svg

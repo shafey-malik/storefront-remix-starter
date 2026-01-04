@@ -19,12 +19,15 @@ const FormElement: React.FC<PropsWithChildren<FormElementProps>> = ({
   return (
     <div>
       {label && (
-        <label htmlFor={name} className={clsx('text-sm text-gray-500')}>
+        <label
+          htmlFor={name}
+          className={clsx('text-sm text-[hsl(var(--lead-text))] ')}
+        >
           {label}
           {required && <span className="text-rose-500">*</span>}
         </label>
       )}
-      <div className={label && "mt-1"}>{children}</div>
+      <div className={label && 'mt-1'}>{children}</div>
       {error && (
         <div className="pt-1 text-rose-500 text-sm">
           <span>{error}</span>

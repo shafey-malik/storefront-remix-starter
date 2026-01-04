@@ -69,9 +69,9 @@ export default function Search() {
   // };
 
   return (
-    <div className="max-w-6xl mx-auto px-4">
+    <div className="max-w-6xl mx-auto px-4 bg-[hsl(var(--card))]">
       <div className="flex justify-between items-center">
-        <h2 className="text-3xl sm:text-5xl font-light tracking-tight text-gray-900 my-8">
+        <h2 className="text-3xl sm:text-5xl font-light tracking-tight text-[hsl(var(--foreground))]  my-8">
           {term
             ? `${t('common.resultsFor')} "${term}"`
             : t('common.allResults')}
@@ -97,14 +97,14 @@ export default function Search() {
           {...loaderData}
         />
         {/* price filter */}
-        {/* <div className="mb-6 p-6 bg-white border border-gray-200 rounded-lg">
+        {/* <div className="mb-6 p-6 bg-[hsl(var(--card))] border border-foreground rounded-lg">
         <div className="max-w-2xl mx-auto">
           <div className="space-y-4">
             <div className="flex justify-between items-center">
-              <label className="font-luxury-sans text-sm font-semibold text-gray-900">
+              <label className="font-luxury-sans text-sm font-semibold text-[hsl(var(--foreground))] ">
                 Price Range
               </label>
-              <span className="font-luxury-sans text-sm text-gray-600">
+              <span className="font-luxury-sans text-sm text-[hsl(var(--lead-text))] ">
                 ${localPriceRange[0].toLocaleString()} - ${localPriceRange[1].toLocaleString()}
               </span>
             </div>
@@ -116,7 +116,7 @@ export default function Search() {
                   step={100}
                   className="w-full"
             />
-            <div className="flex justify-between text-xs text-gray-500 font-luxury-sans">
+            <div className="flex justify-between text-xs text-[hsl(var(--lead-text))]  font-luxury-sans">
               <span>$0</span>
               <span>$100,000+</span>
             </div>

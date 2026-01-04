@@ -18,8 +18,8 @@ export function ProductCard({
         src={productAsset?.preview + '?w=300&h=400'}
       />
       <div className="h-2" />
-      <div className="text-sm text-gray-700">{productName}</div>
-      <div className="text-sm font-medium text-gray-900">
+      <div className="text-sm text-[hsl(var(--lead-text))] ">{productName}</div>
+      <div className="text-sm font-medium text-[hsl(var(--foreground))] ">
         <Price priceWithTax={priceWithTax} currencyCode={currencyCode} />
       </div>
     </Link>

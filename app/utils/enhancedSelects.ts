@@ -33,7 +33,7 @@ export function enhanceSelects(opts: EnhanceOptions = {}) {
     button.setAttribute('aria-haspopup', 'listbox');
     button.setAttribute('aria-expanded', 'false');
     button.className =
-      'w-full text-left bg-white border border-gray-300 rounded-md py-2 pl-3 pr-10 cursor-pointer focus:ring-1 focus:ring-[hsl(var(--primary))] focus:border-[hsl(var(--primary))]';
+      'w-full text-left bg-[hsl(var(--card))] border border-gray-300 rounded-md py-2 pl-3 pr-10 cursor-pointer focus:ring-1 focus:ring-[hsl(var(--primary))] focus:border-[hsl(var(--primary))]';
 
     // get the selected option's label (prefer data-label, then rendered innerText)
     const selected = select.options[select.selectedIndex];
@@ -47,7 +47,7 @@ export function enhanceSelects(opts: EnhanceOptions = {}) {
     // list
     const dropdown = document.createElement('ul');
     dropdown.className =
-      'absolute z-50 mt-1 w-full bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-auto hidden';
+      'absolute z-50 mt-1 w-full bg-[hsl(var(--card))] border border-gray-200 rounded-md shadow-lg max-h-60 overflow-auto hidden';
     dropdown.setAttribute('role', 'listbox');
 
     // build options

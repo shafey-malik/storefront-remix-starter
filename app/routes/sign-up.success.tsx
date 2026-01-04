@@ -13,7 +13,7 @@ export default function SuccessPage() {
   return (
     <div className="flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md border-2 rounded-md border-green-600">
-        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+        <div className="bg-[hsl(var(--card))] py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <Form className="space-y-6" method="post">
             <div>
               <div className="flex justify-center">

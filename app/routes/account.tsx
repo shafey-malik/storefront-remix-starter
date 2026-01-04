@@ -49,10 +49,10 @@ export default function AccountDashboard() {
 
   return (
     <div className="max-w-6xl xl:mx-auto px-4">
-      <h2 className="text-3xl sm:text-5xl font-light text-gray-900 my-8">
+      <h2 className="text-3xl sm:text-5xl font-light text-[hsl(var(--foreground))]  my-8">
         {t('account.myAccount')}
       </h2>
-      <p className="text-gray-700 text-lg -mt-4">
+      <p className="text-[hsl(var(--lead-text))]  text-lg -mt-4">
         {t('account.welcomeBack')}, {firstName} {lastName}
       </p>
       <Form method="post" action="/api/logout">

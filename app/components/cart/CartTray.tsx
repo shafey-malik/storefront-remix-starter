@@ -43,7 +43,7 @@ export function CartTray({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity z-0" />
+            <Dialog.Overlay className="fixed inset-0 bg-black/30 dark:bg-black/50 transition-opacity z-0" />
           </Transition.Child>
 
           <div className="fixed inset-y-0 right-0 pl-3 sm:pl-10 max-w-full flex z-10">
@@ -57,16 +57,16 @@ export function CartTray({
               leaveTo="translate-x-full"
             >
               <div className="w-screen max-w-xs sm:max-w-md">
-                <div className="h-full flex flex-col bg-white shadow-xl overflow-y-scroll">
+                <div className="h-full flex flex-col bg-[hsl(var(--card))] shadow-[var(--shadow-card)] overflow-y-scroll">
                   <div className="flex-1 py-4 sm:py-6 overflow-y-auto px-3 sm:px-6">
                     <div className="flex items-start justify-between gap-2">
-                      <Dialog.Title className="text-base sm:text-lg font-medium text-gray-900">
+                      <Dialog.Title className="text-base sm:text-lg font-medium text-[hsl(var(--foreground))]">
                         {t('cart.title')}
                       </Dialog.Title>
                       <div className="flex-shrink-0">
                         <button
                           type="button"
-                          className="-m-2 p-1 sm:p-2 text-gray-400 hover:text-gray-500"
+                          className="-m-2 p-1 sm:p-2 text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))] transition-colors"
                           onClick={() => onClose(false)}
                         >
                           <span className="sr-only">
@@ -90,7 +90,7 @@ export function CartTray({
                           adjustOrderLine={adjustOrderLine}
                         ></CartContents>
                       ) : (
-                        <div className="flex items-center justify-center h-40 sm:h-48 text-base sm:text-xl text-gray-400">
+                        <div className="flex items-center justify-center h-40 sm:h-48 text-base sm:text-xl text-[hsl(var(--muted-foreground))]">
                           {t('cart.empty')}
                         </div>
                       )}
@@ -98,8 +98,8 @@ export function CartTray({
                   </div>
 
                   {activeOrder?.totalQuantity && editable && (
-                    <div className="border-t border-gray-200 py-4 sm:py-6 px-3 sm:px-6">
-                      <div className="flex justify-between text-sm sm:text-base font-medium text-gray-900">
+                    <div className="border-t border-[hsl(var(--border))] py-4 sm:py-6 px-3 sm:px-6">
+                      <div className="flex justify-between text-sm sm:text-base font-medium text-[hsl(var(--foreground))]">
                         <p>{t('common.subtotal')}</p>
                         <p>
                           {currencyCode && (
@@ -110,7 +110,7 @@ export function CartTray({
                           )}
                         </p>
                       </div>
-                      <p className="mt-0.5 text-xs sm:text-sm text-gray-500">
+                      <p className="mt-0.5 text-xs sm:text-sm text-[hsl(var(--muted-foreground))]">
                         {t('cart.shippingMessage')}
                       </p>
                       <div className="mt-4 sm:mt-6">

@@ -148,13 +148,13 @@ export default function CheckoutShipping() {
   return (
     <div>
       <div>
-        <h2 className="text-lg font-medium text-gray-900">
+        <h2 className="text-lg font-medium text-[hsl(var(--foreground))] ">
           {t('checkout.detailsTitle')}
         </h2>
 
         {isSignedIn ? (
           <div>
-            <p className="mt-2 text-gray-600">
+            <p className="mt-2 text-[hsl(var(--lead-text))] ">
               {customer?.firstName} {customer?.lastName}
             </p>
             <p>{customer?.emailAddress}</p>
@@ -171,7 +171,7 @@ export default function CheckoutShipping() {
             <div className="mt-4">
               <label
                 htmlFor="emailAddress"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-[hsl(var(--foreground))] "
               >
                 {t('account.emailAddress')}
               </label>
@@ -182,7 +182,7 @@ export default function CheckoutShipping() {
                   name="emailAddress"
                   autoComplete="email"
                   defaultValue={customer?.emailAddress}
-                  className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                  className="block w-full border-foreground rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
                 />
               </div>
               {error?.errorCode === 'EMAIL_ADDRESS_CONFLICT_ERROR' && (
@@ -195,7 +195,7 @@ export default function CheckoutShipping() {
               <div>
                 <label
                   htmlFor="firstName"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-[hsl(var(--foreground))] "
                 >
                   {t('account.firstName')}
                 </label>
@@ -206,7 +206,7 @@ export default function CheckoutShipping() {
                     name="firstName"
                     autoComplete="given-name"
                     defaultValue={customer?.firstName}
-                    className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                    className="block w-full border-foreground rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
                   />
                 </div>
               </div>
@@ -214,7 +214,7 @@ export default function CheckoutShipping() {
               <div>
                 <label
                   htmlFor="lastName"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-[hsl(var(--foreground))] "
                 >
                   {t('account.lastName')}
                 </label>
@@ -225,7 +225,7 @@ export default function CheckoutShipping() {
                     name="lastName"
                     autoComplete="family-name"
                     defaultValue={customer?.lastName}
-                    className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                    className="block w-full border-foreground rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
                   />
                 </div>
               </div>
@@ -241,8 +241,8 @@ export default function CheckoutShipping() {
         onChange={() => setAddressFormChanged(true)}
       >
         <input type="hidden" name="action" value="setCheckoutShipping" />
-        <div className="mt-10 border-t border-gray-200 pt-10">
-          <h2 className="text-lg font-medium text-gray-900">
+        <div className="mt-10 border-t border-foreground pt-10">
+          <h2 className="text-lg font-medium text-[hsl(var(--foreground))] ">
             {t('checkout.shippingTitle')}
           </h2>
         </div>
@@ -263,7 +263,7 @@ export default function CheckoutShipping() {
         )}
       </Form>
 
-      <div className="mt-10 border-t border-gray-200 pt-10">
+      <div className="mt-10 border-t border-foreground pt-10">
         <ShippingMethodSelector
           eligibleShippingMethods={eligibleShippingMethods}
           currencyCode={activeOrder?.currencyCode}
@@ -281,7 +281,7 @@ export default function CheckoutShipping() {
         className={classNames(
           canProceedToPayment
             ? 'bg-primary hover:bg-primary-700'
-            : 'bg-gray-400',
+            : 'bg-lead-text/50',
           'flex w-full items-center justify-center space-x-2 mt-24 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500',
         )}
       >

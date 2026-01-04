@@ -33,7 +33,7 @@ export function SearchBar() {
     return (
       <button
         onClick={() => setShowSearch(true)}
-        className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+        className="p-2 hover:bg-[hsl(var(--platinum-dark))] rounded-lg transition-colors"
         aria-label={t('common.search')}
       >
         <Search className="w-5 h-5 text-[hsl(var(--lead-text))]" />
@@ -55,12 +55,12 @@ export function SearchBar() {
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
         placeholder={t('common.search')}
-        className="px-3 h-9 border border-[hsl(var(--secondary))] rounded-lg focus:outline-none focus:border-2 focus:border-[hsl(var(--secondary))] w-64"
+        className="px-3 bg-[hsl(var(--card))] h-9 border border-[hsl(var(--secondary))] rounded-lg focus:outline-none focus:border-2 focus:border-[hsl(var(--secondary))] w-64"
         autoFocus
       />
       <button
         type="submit"
-        className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+        className="p-2 hover:bg-[hsl(var(--platinum-dark))] rounded-lg transition-colors"
         aria-label={t('common.search')}
       >
         <Search className="w-5 h-5 text-[hsl(var(--secondary))]" />
@@ -68,10 +68,10 @@ export function SearchBar() {
       <button
         type="button"
         onClick={() => setShowSearch(false)}
-        className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+        className="p-2 hover:bg-[hsl(var(--platinum-dark))] rounded-lg transition-colors"
         aria-label={t('common.close')}
       >
-        <X className="w-5 h-5 text-gray-600" />
+        <X className="w-5 h-5 text-[hsl(var(--foreground))] " />
       </button>
     </Form>
   );

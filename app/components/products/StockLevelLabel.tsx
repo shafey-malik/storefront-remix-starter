@@ -5,7 +5,7 @@ export function StockLevelLabel({ stockLevel }: { stockLevel?: string }) {
   const { t } = useTranslation();
 
   let stockLevelLabel = '';
-  let badgeClasses = 'bg-gray-100 text-gray-800';
+  let badgeClasses = 'bg-card text-[hsl(var(--foreground))] ';
   switch (stockLevel as StockLevel) {
     case 'IN_STOCK':
       stockLevelLabel = t('product.inStock');

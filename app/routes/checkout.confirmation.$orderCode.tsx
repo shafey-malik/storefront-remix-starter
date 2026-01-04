@@ -66,7 +66,7 @@ export default function CheckoutConfirmation() {
   if (orderNotFound) {
     return (
       <div>
-        <h2 className="text-3xl sm:text-5xl font-light tracking-tight text-gray-900 my-8">
+        <h2 className="text-3xl sm:text-5xl font-light tracking-tight text-[hsl(var(--foreground))]  my-8">
           {t('checkout.orderNotFound')}
         </h2>
       </div>
@@ -76,11 +76,11 @@ export default function CheckoutConfirmation() {
   if (orderErrored && retriesExhausted) {
     return (
       <div>
-        <h2 className="text-3xl flex items-center space-x-2 sm:text-5xl font-light tracking-tight text-gray-900 my-8">
+        <h2 className="text-3xl flex items-center space-x-2 sm:text-5xl font-light tracking-tight text-[hsl(var(--foreground))]  my-8">
           <XCircleIcon className="text-red-600 w-8 h-8 sm:w-12 sm:h-12"></XCircleIcon>
           <span>{t('checkout.orderErrorTitle')}</span>
         </h2>
-        <p className="text-lg text-gray-700">
+        <p className="text-lg text-[hsl(var(--lead-text))] ">
           {t('checkout.orderErrorMessage')}
         </p>
       </div>
@@ -90,7 +90,7 @@ export default function CheckoutConfirmation() {
   if (orderErrored) {
     return (
       <div>
-        <h2 className="text-3xl flex items-center space-x-2 sm:text-5xl font-light tracking-tight text-gray-900 my-8">
+        <h2 className="text-3xl flex items-center space-x-2 sm:text-5xl font-light tracking-tight text-[hsl(var(--foreground))]  my-8">
           {t('checkout.orderProcessing')}
         </h2>
       </div>
@@ -99,11 +99,11 @@ export default function CheckoutConfirmation() {
 
   return (
     <div>
-      <h2 className="text-3xl flex items-center space-x-2 sm:text-5xl font-light tracking-tight text-gray-900 my-8">
+      <h2 className="text-3xl flex items-center space-x-2 sm:text-5xl font-light tracking-tight text-[hsl(var(--foreground))]  my-8">
         <CheckCircleIcon className="text-green-600 w-8 h-8 sm:w-12 sm:h-12"></CheckCircleIcon>
         <span>{t('order.summary')}</span>
       </h2>
-      <p className="text-lg text-gray-700">
+      <p className="text-lg text-[hsl(var(--lead-text))] ">
         {t('checkout.orderSuccessMessage')}{' '}
         <span className="font-bold">{order!.code}</span>
       </p>

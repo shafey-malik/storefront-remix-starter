@@ -47,10 +47,10 @@ export default function SignUpPage() {
     <>
       <div className="flex flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
-          <h2 className="mt-6 text-center text-3xl text-gray-900">
+          <h2 className="mt-6 text-center text-3xl text-[hsl(var(--foreground))] ">
             {t('account.create')}
           </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
+          <p className="mt-2 text-center text-sm text-[hsl(var(--lead-text))] ">
             {t('common.or')}{' '}
             <Link
               to="/sign-in"
@@ -62,7 +62,7 @@ export default function SignUpPage() {
         </div>
 
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-          <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+          <div className="bg-[hsl(var(--card))] py-8 px-4 shadow sm:rounded-lg sm:px-10">
             <div className="bg-yellow-50 border border-yellow-400 text-yellow-800 rounded p-4 text-center text-sm">
               <p>{t('vendure.registrationMessage')}</p>
             </div>
@@ -75,7 +75,7 @@ export default function SignUpPage() {
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-[hsl(var(--foreground))] "
                 >
                   {t('account.emailAddress')}
                 </label>
@@ -85,7 +85,7 @@ export default function SignUpPage() {
                     name="email"
                     type="email"
                     autoComplete="email"
-                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                    className="appearance-none block w-full px-3 py-2 border border-foreground rounded-md shadow-sm placeholder-lead-text focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
                   />
                   {formErrors?.email && (
                     <div className="text-xs text-red-700">
@@ -98,7 +98,7 @@ export default function SignUpPage() {
               <div>
                 <label
                   htmlFor="firstName"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-[hsl(var(--foreground))] "
                 >
                   {t('account.firstName')}
                 </label>
@@ -108,7 +108,7 @@ export default function SignUpPage() {
                     name="firstName"
                     type="text"
                     autoComplete="given-name"
-                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                    className="appearance-none block w-full px-3 py-2 border border-foreground rounded-md shadow-sm placeholder-lead-text focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
                   />
                 </div>
               </div>
@@ -116,7 +116,7 @@ export default function SignUpPage() {
               <div>
                 <label
                   htmlFor="lastName"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-[hsl(var(--foreground))] "
                 >
                   {t('account.lastName')}
                 </label>
@@ -126,7 +126,7 @@ export default function SignUpPage() {
                     name="lastName"
                     type="text"
                     autoComplete="family-name"
-                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                    className="appearance-none block w-full px-3 py-2 border border-foreground rounded-md shadow-sm placeholder-lead-text focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
                   />
                 </div>
               </div>
@@ -134,7 +134,7 @@ export default function SignUpPage() {
               <div>
                 <label
                   htmlFor="password"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-[hsl(var(--foreground))] "
                 >
                   {t('account.password')}
                 </label>
@@ -144,7 +144,7 @@ export default function SignUpPage() {
                     name="password"
                     type="password"
                     autoComplete="current-password"
-                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                    className="appearance-none block w-full px-3 py-2 border border-foreground rounded-md shadow-sm placeholder-lead-text focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
                   />
                   {formErrors?.password && (
                     <div className="text-xs text-red-700">
@@ -156,7 +156,7 @@ export default function SignUpPage() {
               <div>
                 <label
                   htmlFor="repeatPassword"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-[hsl(var(--foreground))] "
                 >
                   {t('account.repeatPassword')}
                 </label>
@@ -166,7 +166,7 @@ export default function SignUpPage() {
                     name="repeatPassword"
                     type="password"
                     autoComplete="current-password"
-                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                    className="appearance-none block w-full px-3 py-2 border border-foreground rounded-md shadow-sm placeholder-lead-text focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
                   />
                   {formErrors?.repeatPassword && (
                     <div className="text-xs text-red-700">
