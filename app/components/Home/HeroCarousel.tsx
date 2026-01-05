@@ -142,13 +142,13 @@ const HeroCarousel = () => {
                   transition={{ delay: 0.5 }}
                   className="flex flex-col sm:flex-row gap-4 sm:gap-5 pt-4 sm:pt-6"
                 >
-                  <Button className="btn-luxury text-[hsl(var(--secondary))] hover:text-[hsl(var(--background))] px-8 sm:px-10 py-3 sm:py-3.5 text-sm sm:text-base font-light tracking-wide ">
+                  <Button className="btn-luxury text-[hsl(var(--secondary))] hover:text-[hsl(var(--background))] px-8 sm:px-10 py-3 sm:py-3.5 text-sm sm:text-base font-normal tracking-wide ">
                     <Calendar className="w-4 h-4 mr-2" />
                     View Collection
                   </Button>
                   <Button
                     variant="outline"
-                    className="bg-[hsl(var(--card))] px-8 sm:px-10 py-3 sm:py-3.5 text-sm sm:text-base font-normal border-[hsl(var(--secondary))] text-[hsl(var(--secondary))] hover:bg-[hsl(var(--primary))] hover:text-[hsl(var(--secondary))] transition-all duration-500 tracking-wide"
+                    className="bg-[hsl(var(--card))] px-8 sm:px-10 py-3 sm:py-3.5 text-sm sm:text-base font-normal border-[hsl(var(--foreground))] text-[hsl(var(--foreground))] hover:bg-[hsl(var(--primary))] hover:text-[hsl(var(--secondary))] transition-all duration-500 tracking-wide"
                   >
                     Book Consultation
                   </Button>
